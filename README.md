@@ -1,3 +1,2 @@
-# JogoNarrativaJava 🎮
-### This is my first Java code as part of my learning process, made as a simple narrative based game. 📖✍️
-In this game you'll play as someone lost in a forrest and will answer simple questions until survive or lose the game.
+## Este pequeno projeto foi relizado como parte de meu aprendizado em Java. 📖✍️
+### Nesse jogo você vai jogar como alguém perdido em uma floresta e irá responder simples perguntas até sobreviver ou perder o jogo.
