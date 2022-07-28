@@ -12,10 +12,66 @@ package problema2;
  * @author Claudemir Souza
  */
 
+import java.util.Scanner;
+
 public class Problema2 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+        String nome1, nome2;
+        int idade1, idade2, maior = 0;
+ 
+        Scanner entrada = new Scanner (System.in);
+        
+        System.out.print("Nome do 1º Cliente:");
+        nome1 = entrada.nextLine();
+        System.out.print("Idade do 1º Cliente:");
+        idade1 = entrada.nextInt();
+        
+        entrada.nextLine(); //CONTINUANDO PARA PRÓXIMA LEITURA
+        
+        System.out.print("Nome do 2º Cliente:");
+        nome2 = entrada.nextLine();
+        System.out.print("Idade do 2º Cliente:");
+        idade2 = entrada.nextInt();
+        entrada.close(); //FECHANDO O BUFFER DE ENTRADA
+        
+        //COMPARANDO DADOS 
+        if (maior == 0)
+        {
+            maior = idade1;
+        }
+        if (idade2 > maior)
+        {
+            maior = idade2;
+        }
+        
+        //MOSTRANDO NA TELA
+        if (maior == idade1)
+        {
+            System.out.print("Quarto A: " + nome1);
+            if (maior >= 60)
+            {
+                System.out.print(" com desconto de 40%; Quarto B " + nome2 + ".\n");
+            }
+            else
+            {
+                System.out.print("; Quarto B " + nome2 + ".\n");
+            }
+        }
+        else if (maior == idade2)
+        {
+            System.out.print("Quarto A: " + nome2);
+            if (maior >= 60)
+            {
+                System.out.print(" com desconto de 40%; Quarto B " + nome1 + ".\n");
+            }
+            else 
+            {
+                System.out.print("; Quarto B " + nome1 + ".\n");
+            }
+        }
+            
     }
     
 }
