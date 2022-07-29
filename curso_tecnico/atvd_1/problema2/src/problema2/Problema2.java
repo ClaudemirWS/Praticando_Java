@@ -22,14 +22,14 @@ public class Problema2 {
         int idade1, idade2, maior = 0;
  
         Scanner entrada = new Scanner (System.in);
-        
+        //CLIENTE 1
         System.out.print("Nome do 1º Cliente:");
         nome1 = entrada.nextLine();
         System.out.print("Idade do 1º Cliente:");
         idade1 = entrada.nextInt();
-        
-        entrada.nextLine(); //CONTINUANDO PARA PRÓXIMA LEITURA
-        
+        //CONTINUANDO PARA PRÓXIMA LEITURA
+        entrada.nextLine(); 
+        //CLIENTE 2
         System.out.print("Nome do 2º Cliente:");
         nome2 = entrada.nextLine();
         System.out.print("Idade do 2º Cliente:");
