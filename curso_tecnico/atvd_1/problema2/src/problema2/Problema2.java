@@ -11,67 +11,46 @@ package problema2;
 /**
  * @author Claudemir Souza
  */
-
 import java.util.Scanner;
 
 public class Problema2 {
 
     public static void main(String[] args) {
         
-        String nome1, nome2;
-        int idade1, idade2, maior = 0;
+        String nome, quartoA = "", quartoB = "";
+        int idade, maior = 0;
  
-        Scanner entrada = new Scanner (System.in);
-        //CLIENTE 1
-        System.out.print("Nome do 1º Cliente:");
-        nome1 = entrada.nextLine();
-        System.out.print("Idade do 1º Cliente:");
-        idade1 = entrada.nextInt();
-        //CONTINUANDO PARA PRÓXIMA LEITURA
-        entrada.nextLine(); 
-        //CLIENTE 2
-        System.out.print("Nome do 2º Cliente:");
-        nome2 = entrada.nextLine();
-        System.out.print("Idade do 2º Cliente:");
-        idade2 = entrada.nextInt();
-        entrada.close(); //FECHANDO O BUFFER DE ENTRADA
+        //REPETE ATÉ CUMPRIR OBJETIVO
+        for (int i = 1; i <= 2; i++)
+        {
+            Scanner entrada = new Scanner (System.in);
+            System.out.print("Nome do " + i + "º Cliente:");
+            nome = entrada.nextLine();
+            System.out.print("Idade do " + i + "º Cliente:");
+            idade = entrada.nextInt();
         
-        //COMPARANDO DADOS 
-        if (maior == 0)
-        {
-            maior = idade1;
-        }
-        if (idade2 > maior)
-        {
-            maior = idade2;
-        }
-        
-        //MOSTRANDO NA TELA
-        if (maior == idade1)
-        {
-            System.out.print("Quarto A: " + nome1);
-            if (maior >= 60)
+            //COMPARANDO IDADES 
+            if (maior == 0)
             {
-                System.out.print(" com desconto de 40%; Quarto B " + nome2 + ".\n");
+                maior = idade;
+                quartoA = nome;
             }
-            else
+            else if (maior != 0 && idade > maior)
             {
-                System.out.print("; Quarto B " + nome2 + ".\n");
+                maior = idade;
+                quartoB = quartoA; //TRANSFERE O ANTIGO CLIENTE PARA O B
+                quartoA = nome; //PASSA O NOVO CLIENTE PARA O A
             }
         }
-        else if (maior == idade2)
+        //PRINTA RESULTADOS
+        System.out.print("Quarto A: " + quartoA);
+        if (maior >= 60)
         {
-            System.out.print("Quarto A: " + nome2);
-            if (maior >= 60)
-            {
-                System.out.print(" com desconto de 40%; Quarto B " + nome1 + ".\n");
-            }
-            else 
-            {
-                System.out.print("; Quarto B " + nome1 + ".\n");
-            }
+            System.out.print(" com desconto de 40%; Quarto B " + quartoB + ".\n");
         }
-            
-    }
-    
+        else
+        {
+            System.out.print("; Quarto B " + quartoB + ".\n");
+        }            
+    }   
 }
