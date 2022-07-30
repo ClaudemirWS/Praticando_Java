@@ -25,6 +25,7 @@ public class Problema4 {
         int prog = 0, indiceHospd = 0;
         String hospedes[] = new String [15]; 
         String nomeHospede, pesquisaHospd;
+        boolean encontrado;
         
         //REPETIÇÃO DO PROGRAMA
         while (prog != 3)
@@ -57,18 +58,22 @@ public class Problema4 {
             //PESQUISA HOSPEDES
             else if (prog == 2)
             {   
+                encontrado = false; //AINDA NÃO ACHOU O HOSPEDE PROCURADO
                 Scanner pesquisa = new Scanner (System.in);
                 System.out.print("Pesquise o nome do hóspede: ");
                 pesquisaHospd = pesquisa.nextLine().strip();
                 for (int i = 0; i <= 14; i++)
                 {
-                    //FAZ O TRATAMENTO EM CASO DE POSIÇÕES NULL NO VETOR
+                    //PESQUISA O HOSPEDE, PRINTA E RETORNA VERDADEIRO SE ENCONTRAR
                     if (hospedes[i] != null && hospedes[i].equals(pesquisaHospd))
                     {   
-                        System.out.println("Hóspede " + hospedes[i] + " foi encontrado no índice [" + i + "].");
+                        System.out.println("Hóspede " + hospedes[i] + " foi encontrado(a) no índice [" + i + "].");
+                        encontrado = true;
                     }
-                    
-                    //WORK IN PROGRESS
+                }
+                if (encontrado == false)
+                {
+                    System.out.println("Hóspede não encontrado.");
                 }
                 prog = 0; //RETORNA AO MENU
             }
