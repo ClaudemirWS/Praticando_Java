@@ -8,6 +8,7 @@ Se o valor informado forválido, mostre na tela qual dos auditórios é o mais a
 No caso do auditório Alfa, calcule ainda quantas cadeiras adicionais serão necessárias, observando o limite citado.
  */
 package problema1;
+
 /**
  * @author Claudemir Souza
  */
@@ -18,33 +19,27 @@ public class Problema1 {
 
     public static void main(String[] args) {
         int convidados;
-        
+
         //CRIA SCANNER
-        Scanner entrada = new Scanner (System.in);
-        
+        Scanner entrada = new Scanner(System.in);
+
         System.out.println("===== EVENTO NO HOTEL =====");
         System.out.print("Quantas pessoas serão convidadas: ");
         convidados = entrada.nextInt();
-        
+
         //AUDITÓRIO ALFA
-        if (convidados >= 1 && convidados <= 220)
-        {
+        if (convidados >= 1 && convidados <= 220) {
             System.out.println("Use o auditório ALFA.");
-            if (convidados > 150)
-            {
+            if (convidados > 150) {
                 System.out.println("Inclua mais " + (convidados - 150) + " cadeiras.");
             }
-        }
-        //AUDITÓRIO BETA
-        else if (convidados > 220 && convidados <= 350)
-        {
+        } //AUDITÓRIO BETA
+        else if (convidados > 220 && convidados <= 350) {
             System.out.println("Use o auditório BETA.");
-        }
-        else
-        {
+        } else {
             System.out.println("Número de convidados inválido.");
         }
-        
+
     }
-    
+
 }
