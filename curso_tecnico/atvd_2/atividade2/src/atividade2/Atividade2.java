@@ -1,5 +1,7 @@
 package atividade2;
 
+import java.util.Scanner;
+
 /**
  * @author Claudemir Souza
  */
@@ -7,22 +9,29 @@ public class Atividade2 {
 
     public static void main(String[] args) {
         
-        double a = 1.2, b = 4.35;
+        //RECEBE QUANTIDADE DE PONTOS DA TRAJETORIA
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Quantidade de pontos para as Trajetórias: ");
+        int pontos = entrada.nextInt();
 
-        //PEGA O VALOR ANTES E DEPOIS DO PONTO E CONVERTE PARA DOUBLE
-        double xA = Double.parseDouble(String.valueOf(a).split("\\.")[0]); //ANTES DO PONTO
-        double yA = Double.parseDouble(String.valueOf(a).split("\\.")[1]); //DEPOIS DO PONTO 
-        double xB = Double.parseDouble(String.valueOf(b).split("\\.")[0]); //ANTES DO PONTO
-        double yB = Double.parseDouble(String.valueOf(b).split("\\.")[1]); //DEPOIS DO PONTO
-        
-        System.out.println("Coordenadas: (" + xA + " , " + yA + ")");
-        System.out.println("Coordenadas: (" + xB + " , " + yB + ")");
+        System.out.println("Trajetória 1: ");
+        Trajetoria trajetoria1 = new Trajetoria();
+        trajetoria1.rotaPontos(pontos);
 
-        //Ponto2D ponto2d = new Ponto2D(xA, yA, xB, yB);
-        //double k = 2;
+        System.out.println("\nTrajetória 2: ");
+        Trajetoria trajetoria2 = new Trajetoria();
+        trajetoria2.rotaPontos(pontos);
 
-        //System.out.println("1.A: " + ponto2d.calculaDist());
-        //ponto2d.calculaMult(k);
+        /*MULTIPLICA OS VALORES DA MENOR TRAJETORIA POR 2 */
+        System.out.println("\nTrajetória Redimensionada: ");
+        if (trajetoria1.resultado > trajetoria2.resultado) {
+            
+        } else if (trajetoria2.resultado > trajetoria1.resultado) {
+            
+        } else {
+            System.out.println("As duas trajetórias são do mesmo tamanho.");
+        }
+
     }
 
 }

@@ -18,7 +18,7 @@ public class VetoreMatriz {
         }  
         
         //========== ARRAY BIDIMENSIONAL ==========
-        int[][] numAleatorio = new int[3][4]; //3 LINHAS E 4 COLUNAS
+        int[][] numAleatorio = new int[4][2]; //3 LINHAS E 4 COLUNAS
         Random numeroRandom = new Random();
 
         //PREENCHE LINHAS E COLUNAS
