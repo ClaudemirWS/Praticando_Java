@@ -5,9 +5,9 @@ package atividade2;
  */
 public class Ponto2D {
 
-    double x, y;
-    double distancia;
-
+    private double distancia;
+    public double x, y;
+    
     //CONSTRUTOR DE PONTOS
     public Ponto2D(double x, double y) {
         this.x = x;
@@ -26,10 +26,10 @@ public class Ponto2D {
                 + "- Distância: " + String.format("%.1f", dist));
     }
 
-    //MULTIPLICA COORDENADAS SEGUINDO A FÓRMULA E MOSTRA NA TELA NO FORMATO (X,Y)
-    public void calculaMult(double k, double x, double y) {
-        x *= k;
-        y *= k;
+    //MULTIPLICA A COORDENADA SEGUINDO A FÓRMULA
+    public double calculaMult(int k, double valor) {
+        valor *= k;
+        return valor;
     }
 
 }
