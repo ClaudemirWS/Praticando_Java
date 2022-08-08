@@ -21,13 +21,14 @@ public class Ponto2D {
         return distancia;
     }
 
-    public void mostraDist(double xA, double yA, double xB, double yB, double dist) {
-        System.out.println("(" + xA + "," + yA + ") " + "a (" + xB + "," + yB + ") "
+    //MOSTRA A ROTA ENTRE OS PONTOS E A DISTANCIA RESULTANTE
+    public void mostraDist(int k , double xA, double yA, double xB, double yB, double dist) {
+        System.out.println("(" + (xA*k) + "," + (yA*k) + ") " + "a (" + (xB*k) + "," + (yB*k) + ") "
                 + "- Distância: " + String.format("%.1f", dist));
     }
 
-    //MULTIPLICA A COORDENADA SEGUINDO A FÓRMULA
-    public double calculaMult(int k, double valor) {
+    //REDIMENSIONA OS PONTOS
+    public double redimensPontos(int k, double valor) {
         valor *= k;
         return valor;
     }

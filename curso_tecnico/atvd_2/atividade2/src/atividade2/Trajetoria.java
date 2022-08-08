@@ -10,6 +10,7 @@ public class Trajetoria {
     private String x, y;
     private Ponto2D ponto2d[];
     private double dist, novaDist, novoTotal;
+    private double xA, yA, xB, yB;
     public double total;
 
     //CONSTRUTOR DE TRAJETÓRIAS
@@ -32,12 +33,16 @@ public class Trajetoria {
 
     public void rotaPontos() {
         System.out.println("");
-        //RETORNA A DISTANCIA ENTRE OS PONTOS
         for (int i = 0; i < ponto2d.length - 1; i++) {
+            //DECIDI ATRIBUIR OS VALORES A VARIÁVEIS PARA MELHORAR A LEITURA DO PROGRAMA
+            xA = ponto2d[i].x;
+            yA = ponto2d[i].y;
+            xB = ponto2d[i + 1].x;
+            yB = ponto2d[i + 1].y;
             //CALCULA A DISTÂNCIA
-            dist = ponto2d[i].calculaDist(ponto2d[i].x, ponto2d[i].y, ponto2d[i + 1].x, ponto2d[i + 1].y);
+            dist = ponto2d[i].calculaDist(xA, yA, xB, yB);
             //MOSTRA AS COORDENADAS COM A DISTÂNCIA
-            ponto2d[i].mostraDist(ponto2d[i].x, ponto2d[i].y, ponto2d[i + 1].x, ponto2d[i + 1].y, dist);
+            ponto2d[i].mostraDist(1, xA, yA, xB, yB, dist); //VALOR PADRÃO 1 PARA CALCULO DE DISTANCIA SEM REDIMENSIONAR
             //SOMA A DISTANCIA TOTAL
             total += dist;
         }
@@ -45,17 +50,19 @@ public class Trajetoria {
         System.out.println("Distância Total = " + String.format("%.1f", total));
     }
 
+    //VAI MULTIPLICAR OS VALORES LIDOS POR 2 CONFORME SOLICITADO
     public void redimensionaPontos() {
-        //É CHAMADA QUANDO O RESULTADO É O MENOR ENTRE AS TRAJETÓRIAS
         for (int i = 0; i < ponto2d.length - 1; i++) {
-
+            //DECIDI ATRIBUIR OS VALORES A VARIÁVEIS PARA MELHORAR A LEITURA DO PROGRAMA
+            xA = ponto2d[i].x;
+            yA = ponto2d[i].y;
+            xB = ponto2d[i + 1].x;
+            yB = ponto2d[i + 1].y;
             //CALCULA A NOVA DISTANCIA
-            novaDist = ponto2d[i].calculaDist(ponto2d[i].x = ponto2d[i].calculaMult(2, ponto2d[i].x)
-                                            , ponto2d[i].y = ponto2d[i].calculaMult(2, ponto2d[i].y)
-                                            , ponto2d[i + 1].x = ponto2d[i].calculaMult(2, ponto2d[i + 1].x)
-                                            , ponto2d[i + 1].y = ponto2d[i].calculaMult(2, ponto2d[i + 1].y));
+            novaDist = ponto2d[i].calculaDist(ponto2d[i].redimensPontos(2, xA), ponto2d[i].redimensPontos(2, yA),
+                    ponto2d[i].redimensPontos(2, xB), ponto2d[i].redimensPontos(2, yB));
             //MOSTRA AS COORDENADAS COM A DISTÂNCIA
-            ponto2d[i].mostraDist(ponto2d[i].x, ponto2d[i].y, ponto2d[i + 1].x, ponto2d[i + 1].y, novaDist);
+            ponto2d[i].mostraDist(2, xA, yA, xB, yB, novaDist); //2 É O NÚMERO DE VEZES QUE OS PONTOS FORAM REDIMENSIONADOS
             //CALCULA O NOVO TOTAL
             novoTotal += novaDist;
         }
