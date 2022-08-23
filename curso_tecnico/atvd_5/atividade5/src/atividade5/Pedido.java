@@ -32,7 +32,7 @@ public class Pedido {
         System.out.print("Número da mesa: ");
         this.numeroMesa = sc.nextInt();
         do {
-            System.out.println("\t\t\t===== MESA " + numeroMesa + " =====");
+            System.out.println("\t\t===== MESA " + numeroMesa + " =====");
             System.out.print("1 - Adicionar Pizza | 2 - Adicionar Bebida | 3 - Terminar: ");
             programa = sc.nextInt();
             Scanner dados = new Scanner(System.in); //SCANNER PARA STRINGS
@@ -73,7 +73,7 @@ public class Pedido {
     }
 
     public void mostraPedido() {
-        System.out.println("\t\t\t===== PEDIDO DA MESA " + numeroMesa + " =====");
+        System.out.println("\t\t===== PEDIDO DA MESA " + numeroMesa + " =====");
         System.out.println("PIZZAS: ");
         for (String p : pizzasPedido) {
             System.out.println(p);

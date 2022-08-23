@@ -16,25 +16,29 @@ public class Pizza {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nome da nova pizza: ");
         this.nome = sc.nextLine();
-        System.out.print("Preço da pizza: ");
+        System.out.print("Tipo (Doce/Salgada): ");
+        this.tipo = sc.nextLine();
+        System.out.print("Ingredientes: ");
+        this.ingredientes = sc.nextLine();
+        System.out.print("Tamanho (em cm): ");
+        this.tamanho = sc.nextDouble();
+        System.out.print("Preço: ");
         this.preco = sc.nextDouble();
     }
-    
+
     //RETORNA UMA MENSAGEM DESCREVENDO A PIZZA
-    public String getDescricao()
-    {
-        return ("Pizza de " + nome + " custa R$ " + preco + ".");
+    public String getDescricao() {
+        return ("Pizza de " + nome + " do tipo " + tipo + ", tamanho " + tamanho + " cm, preço: R$ " + preco 
+                + "\n Ingredientes: " + ingredientes + "\n");
     }
-    
+
     //RETORNA O NOME DA PIZZA
-    public String getNome()
-    {
+    public String getNome() {
         return nome;
     }
-    
+
     //RETORNA O PREÇO DA PIZZA
-    public double getPreco()
-    {
+    public double getPreco() {
         return preco;
     }
 }

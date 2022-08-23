@@ -13,19 +13,19 @@ public class Cardapio {
     private List<Pizza> Pizzas = new ArrayList<>();
     private List<Bebida> Bebidas = new ArrayList<>();
     //FUNCIONALIDADES DO PROGRAMA
-    private String nomePizzaria;
+    private String nomePizzaria = "PIZZARIA SENAC";
     private int programa = 0;
 
     //CONSTRUTOR
     public Cardapio() {
 
     }
-    
+
     //VAI ATUALIZAR O CARDÁPIO COM NOVOS ITENS
     public void atualizaCardapio() {
         do {
             Scanner sc = new Scanner(System.in);
-            System.out.println("\t\t\t===== ATUALIZA CARDÁPIO =====");
+            System.out.println("\t\t===== ATUALIZA CARDÁPIO =====");
             System.out.print("1 - Nova Pizza | 2 - Nova Bebida | 3 - Voltar: ");
             programa = sc.nextInt();
             switch (programa) {
@@ -51,14 +51,19 @@ public class Cardapio {
 
     //LISTA OS ITENS DO CARDÁPIO
     public void listaCardapio() {
-        System.out.println("===== CARDAPIO ===== ");
-        System.out.println("PIZZAS: ");
-        for (Pizza p : Pizzas) {
-            System.out.println(p.getDescricao());
+        System.out.println("\t===== CARDAPIO "+ nomePizzaria +" ===== ");
+        if (!Pizzas.isEmpty() && !Bebidas.isEmpty()) {
+            System.out.println("PIZZAS: ");
+            for (Pizza p : Pizzas) {
+                System.out.println(p.getDescricao());
+            }
+            System.out.println("BEBIDAS: ");
+            for (Bebida b : Bebidas) {
+                System.out.println(b.getDescricao());
+            }
         }
-        System.out.println("BEBIDAS: ");
-        for (Bebida b : Bebidas) {
-            System.out.println(b.getDescricao());
+        else{
+            System.out.println("O cardápio está vazio.");
         }
     }
 
@@ -66,6 +71,7 @@ public class Cardapio {
     public List getPizzas() {
         return Pizzas;
     }
+
     //RETORNA A LISTA DE BEBIDAS DO CARDÁPIO
     public List getBebidas() {
         return Bebidas;
