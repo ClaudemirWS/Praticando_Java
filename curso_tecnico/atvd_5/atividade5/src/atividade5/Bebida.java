@@ -7,18 +7,34 @@ import java.util.Scanner;
  */
 public class Bebida {
 
+    //ATRIBUTOS DA BEBIDA
     private String nome;
     private double quantidade, preco;
 
+    //CONSTRUTOR
     public Bebida() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nome da nova bebida: ");
         this.nome = sc.nextLine();
+        System.out.print("Preço da nova bebida: ");
+        this.preco = sc.nextDouble();
     }
     
-    public String getBebida()
+    //RETORNA UMA MENSAGEM DESCREVENDO A BEBIDA
+    public String getDescricao()
+    {
+        return ("Bebida " + nome + " custa R$ " + preco + ".");
+    }
+    
+    //RETORNA O NOME DA BEBIDA
+    public String getNome()
     {
         return nome;
     }
     
+    //RETORNA O PREÇO DA BEBIDA
+    public double getPreco()
+    {
+        return preco;
+    }
 }
