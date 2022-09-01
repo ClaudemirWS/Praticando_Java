@@ -1,4 +1,4 @@
-package com.claudemir.cem_exercicios;
+package com.claudemir.cem_exercicios.um_para_vinte;
 
 import java.util.Scanner;
 
