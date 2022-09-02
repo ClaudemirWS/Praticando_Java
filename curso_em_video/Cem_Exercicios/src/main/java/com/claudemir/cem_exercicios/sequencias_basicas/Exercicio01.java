@@ -1,4 +1,4 @@
-package com.claudemir.cem_exercicios.um_para_vinte;
+package com.claudemir.cem_exercicios.sequencias_basicas;
 
 /**
  * REFAZENDO OS CEM EXERCICIOS QUE FIZ EM PORTUGOL
