@@ -3,13 +3,13 @@ package problema;
 /**
  * @author Claudemir Souza
  */
-class FabricaNovos implements Modelo {
+class Cat_Corrida implements Modelo {
 
-    public Esportes getEsportes() {
+    public Resistencia getResistencia() {
         return new Corr_Res();
     }
 
-    public Rpg getRpg() {
+    public Velocidade getVelocidade() {
         return new Corr_Vel();
     }
     

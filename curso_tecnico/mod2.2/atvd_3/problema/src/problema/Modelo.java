@@ -5,8 +5,8 @@ package problema;
  */
 interface Modelo {
 
-    Esportes getEsportes();
+    Resistencia getResistencia();
 
-    Rpg getRpg();
+    Velocidade getVelocidade();
     
 }

@@ -3,9 +3,9 @@ package problema;
 /**
  * @author Claudemir Souza
  */
-abstract class Rpg extends Games {
+abstract class Velocidade extends Exercicios {
 
-    public Rpg(String nome) {
+    public Velocidade(String nome) {
         super(nome);
     }
 }

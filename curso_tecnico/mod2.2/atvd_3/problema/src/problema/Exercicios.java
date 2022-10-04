@@ -3,11 +3,11 @@ package problema;
 /**
  * @author Claudemir Souza
  */
-abstract class Games {
+abstract class Exercicios {
 
     private String nome;
 
-    public Games(String nome) {
+    public Exercicios(String nome) {
         this.nome = nome;
     }
 

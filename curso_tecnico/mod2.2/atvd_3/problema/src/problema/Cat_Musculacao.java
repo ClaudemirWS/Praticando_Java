@@ -3,13 +3,13 @@ package problema;
 /**
  * @author Claudemir Souza
  */
-class FabricaAntigos implements Modelo {
+class Cat_Musculacao implements Modelo {
 
-    public Esportes getEsportes() {
+    public Resistencia getResistencia() {
         return new Musc_Res();
     }
 
-    public Rpg getRpg() {
+    public Velocidade getVelocidade() {
         return new Musc_Vel();
     }
 }

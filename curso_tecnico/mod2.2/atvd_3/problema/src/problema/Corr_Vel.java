@@ -3,9 +3,9 @@ package problema;
 /**
  * @author Claudemir Souza
  */
-class Corr_Vel extends Rpg {
+class Corr_Vel extends Velocidade {
 
     public Corr_Vel() {
-        super("Velocidade");
+        super("Nome do Exercício");
     }
 }

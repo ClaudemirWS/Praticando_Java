@@ -3,9 +3,9 @@ package problema;
 /**
  * @author Claudemir Souza
  */
-class Musc_Res extends Esportes {
+class Musc_Res extends Resistencia {
 
     public Musc_Res() {
-        super("Resistência");
+        super("Nome do Exercício");
     }
 }

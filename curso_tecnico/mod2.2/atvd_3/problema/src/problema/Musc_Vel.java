@@ -3,9 +3,9 @@ package problema;
 /**
  * @author Claudemir Souza
  */
-class Musc_Vel extends Rpg {
+class Musc_Vel extends Velocidade {
 
     public Musc_Vel() {
-        super("Velocidade");
+        super("Nome do Exercício");
     }
 }
