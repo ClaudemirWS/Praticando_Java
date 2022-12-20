@@ -4,6 +4,11 @@
  */
 package portalaluno.telas;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import portalaluno.model.Aluno;
+import portalaluno.model.ListaAluno;
+
 /**
  *
  * @author Claudemir
@@ -37,17 +42,31 @@ public class Listagem extends javax.swing.JFrame {
         Titulo.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         Titulo.setText("Listagem de Alunos");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        // Definimos o nome das colunas que queremos exibir
+        String[] colunas = { "Nome", "E-mail", "Curso" };
+        DefaultTableModel tabeloModelo = new DefaultTableModel(colunas, 0);
+
+        // Pegamos os dados cadastrados na lista de alunos
+        List<Aluno> listaCompleta = ListaAluno.Listar();
+
+        // Para cada item que houver na lista de alunos, iremos adicionar uma nova linha na nossa tabela
+        for(int i = 0; i < listaCompleta.size(); i++) {
+            // Extraímos os dados
+            Aluno alunoAtual = listaCompleta.get(i);
+
+            // Montamos a linha
+            String[] linha = {
+                alunoAtual.getNome(),
+                alunoAtual.getEmail(),
+                alunoAtual.getCurso()
+            };
+
+            // Adicionamos a linha na tabela
+            tabeloModelo.addRow(linha);
+        }
+
+        // Por fim, passamos para o jTable as novas configurações da tabela
+        jTable1.setModel(tabeloModelo);
         jScrollPane1.setViewportView(jTable1);
 
         Voltar.setText("< Voltar");
