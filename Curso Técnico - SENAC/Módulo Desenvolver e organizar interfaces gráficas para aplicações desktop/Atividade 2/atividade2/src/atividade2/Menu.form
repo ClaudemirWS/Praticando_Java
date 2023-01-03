@@ -39,27 +39,27 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="79" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="butIMC" alignment="0" min="-2" pref="249" max="-2" attributes="0"/>
                       <Component id="butGastoCal" min="-2" pref="249" max="-2" attributes="0"/>
                       <Component id="butRecom" min="-2" pref="249" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="78" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="120" max="32767" attributes="0"/>
                   <Component id="butIMC" min="-2" pref="52" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="butGastoCal" min="-2" pref="52" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="butRecom" min="-2" pref="52" max="-2" attributes="0"/>
-                  <EmptySpace pref="60" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -72,6 +72,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="IMC"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butIMCActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="butGastoCal">
           <Properties>
@@ -80,6 +83,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Gasto Cal&#xf3;rico"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butGastoCalActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="butRecom">
           <Properties>
@@ -88,6 +94,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Recomenda&#xe7;&#xf5;es"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butRecomActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

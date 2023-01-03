@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package atividade2;
 
 /**
- *
  * @author Claudemir
  */
 public class Menu extends javax.swing.JFrame {
@@ -36,35 +31,50 @@ public class Menu extends javax.swing.JFrame {
 
         butIMC.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         butIMC.setText("IMC");
+        butIMC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butIMCActionPerformed(evt);
+            }
+        });
 
         butGastoCal.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         butGastoCal.setText("Gasto Calórico");
+        butGastoCal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butGastoCalActionPerformed(evt);
+            }
+        });
 
         butRecom.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         butRecom.setText("Recomendações");
+        butRecom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butRecomActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu);
         Menu.setLayout(MenuLayout);
         MenuLayout.setHorizontalGroup(
             MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuLayout.createSequentialGroup()
+                .addContainerGap(79, Short.MAX_VALUE)
                 .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(butIMC, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(butGastoCal, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(butRecom, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGap(72, 72, 72))
         );
         MenuLayout.setVerticalGroup(
             MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuLayout.createSequentialGroup()
+                .addContainerGap(120, Short.MAX_VALUE)
                 .addComponent(butIMC, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(butGastoCal, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(butRecom, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(118, 118, 118))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -80,6 +90,21 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void butIMCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butIMCActionPerformed
+        IMC telaIMC = new IMC();
+        telaIMC.setVisible(true);
+    }//GEN-LAST:event_butIMCActionPerformed
+
+    private void butGastoCalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butGastoCalActionPerformed
+        GastoCalorico telaGastoCalorico = new GastoCalorico();
+        telaGastoCalorico.setVisible(true);
+    }//GEN-LAST:event_butGastoCalActionPerformed
+
+    private void butRecomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butRecomActionPerformed
+        Recomendacoes telaRecomend = new Recomendacoes();
+        telaRecomend.setVisible(true);
+    }//GEN-LAST:event_butRecomActionPerformed
 
     /**
      * @param args the command line arguments

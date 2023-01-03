@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package atividade2;
 
+import java.text.DecimalFormat;
+
 /**
- *
  * @author Claudemir
  */
 public class IMC extends javax.swing.JFrame {
@@ -71,16 +68,15 @@ public class IMC extends javax.swing.JFrame {
                 .addGroup(CalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPeso)
                     .addComponent(lblAltura))
+                .addGap(34, 34, 34)
                 .addGroup(CalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CalculoLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(butCalcualr, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(CalculoLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(CalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(80, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CalculoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(butCalcualr, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95))
         );
         CalculoLayout.setVerticalGroup(
             CalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,9 +89,9 @@ public class IMC extends javax.swing.JFrame {
                 .addGroup(CalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPeso)
                     .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(butCalcualr, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         Resultado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -130,7 +126,7 @@ public class IMC extends javax.swing.JFrame {
         ResultadoLayout.setVerticalGroup(
             ResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ResultadoLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(21, 21, 21)
                 .addGroup(ResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblResultado)
                     .addComponent(txtResultado))
@@ -138,7 +134,7 @@ public class IMC extends javax.swing.JFrame {
                 .addGroup(ResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblInterpr)
                     .addComponent(txtInterpr))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout IMCLayout = new javax.swing.GroupLayout(IMC);
@@ -146,23 +142,24 @@ public class IMC extends javax.swing.JFrame {
         IMCLayout.setHorizontalGroup(
             IMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IMCLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(IMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblTitulo)
-                    .addComponent(Calculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Resultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(IMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(IMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblTitulo)
+                        .addComponent(Calculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         IMCLayout.setVerticalGroup(
             IMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IMCLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(lblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(Calculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
                 .addComponent(Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -181,7 +178,8 @@ public class IMC extends javax.swing.JFrame {
 
     //BOTÃO DE CALCULAR
     private void butCalcualrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCalcualrActionPerformed
-        calculaImc(Float.parseFloat(txtPeso.getText()), Float.parseFloat(txtAltura.getText()));
+        //RECEBE OS VALORES DIGITADOS
+        calculaImc(Float.parseFloat(txtPeso.getText()),Float.parseFloat(txtAltura.getText()));
     }//GEN-LAST:event_butCalcualrActionPerformed
 
     /**
@@ -241,10 +239,9 @@ public class IMC extends javax.swing.JFrame {
         // FAZ O CÁLCULO
         System.out.println("Peso: " + peso + " Altura: " + altura);
         imc = peso / (altura * altura);
-        //CONVERTE FLOAT PARA STRING
-        String res = Float.toString(imc);
+        
         //ESCREVE NA TELA
-        setResultado(res);
+        setResultado(imc);
         interpretaIMC(imc);
     }
 
@@ -278,8 +275,11 @@ public class IMC extends javax.swing.JFrame {
         setInterpretacao(mensagem);
     }
 
-    private void setResultado(String resultado) {
-        txtResultado.setText(resultado);
+    private void setResultado(Float resultado) {
+        //DEFINE A FORMATAÇÃO DO FLOAT
+        DecimalFormat df = new DecimalFormat("####0.00");
+        //SETA O TEXTO
+        txtResultado.setText(df.format(resultado));
     }
 
     private void setInterpretacao(String interpr) {
