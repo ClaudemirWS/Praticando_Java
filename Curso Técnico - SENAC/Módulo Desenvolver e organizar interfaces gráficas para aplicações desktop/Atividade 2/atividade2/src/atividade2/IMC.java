@@ -1,6 +1,7 @@
 package atividade2;
 
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 
 /**
  * @author Claudemir
@@ -179,7 +180,22 @@ public class IMC extends javax.swing.JFrame {
     //BOTÃO DE CALCULAR
     private void butCalcualrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCalcualrActionPerformed
         //RECEBE OS VALORES DIGITADOS
-        calculaImc(Float.parseFloat(txtPeso.getText()),Float.parseFloat(txtAltura.getText()));
+        String strPeso = txtPeso.getText();
+        String strAltura = txtAltura.getText();
+
+        if (strPeso.isEmpty() || strAltura.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos. ");
+        } else {
+            //VERIFICA SE TODOS OS CAMPOS COMEÇAM E TERMINAM COM NÚMEROS
+            boolean verificaPeso = strPeso.matches("^\\d.*");
+            boolean verificaAltura = strAltura.matches("^\\d.*");
+            if (verificaPeso == true && verificaAltura == true) {
+                //CALCULA IMC
+                calculaImc(Float.parseFloat(strPeso), Float.parseFloat(strAltura));
+            } else {
+                JOptionPane.showMessageDialog(null, "Todos os campos devem conter apenas números. ");
+            }
+        }
     }//GEN-LAST:event_butCalcualrActionPerformed
 
     /**
@@ -237,9 +253,8 @@ public class IMC extends javax.swing.JFrame {
     private void calculaImc(float peso, float altura) {
         float imc;
         // FAZ O CÁLCULO
-        System.out.println("Peso: " + peso + " Altura: " + altura);
         imc = peso / (altura * altura);
-        
+
         //ESCREVE NA TELA
         setResultado(imc);
         interpretaIMC(imc);

@@ -1,6 +1,7 @@
 package atividade2;
 
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 
 /**
  * @author Claudemir
@@ -173,12 +174,25 @@ public class Recomendacoes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //RECEBE O VALOR DIGITADO
-        calculaRecomend(Double.parseDouble(txtCalorias.getText()));
+        String strCalorias = txtCalorias.getText();
+
+        if (strCalorias.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "O campo deve ser preenchido. ");
+        } else {
+            //VERIFICA SE O CAMPO COMEÇA E TERMINA COM NÚMEROS
+            boolean verificaCalorias = strCalorias.matches("^\\d.*");
+            if (verificaCalorias == true) {
+            //CALCULA RECOMENDAÇÕES
+            calculaRecomend(Double.parseDouble(strCalorias));
+            } else {
+                JOptionPane.showMessageDialog(null, "O campo deve conter apenas números. ");
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

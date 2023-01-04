@@ -1,6 +1,7 @@
 package atividade2;
 
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 
 /**
  * @author Claudemir
@@ -229,10 +230,29 @@ public class GastoCalorico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void butCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCalcularActionPerformed
-        //RECEBE OS DADOS DIGITADOS
-        calculaGastoCal(Double.parseDouble(txtPeso.getText()), 
-                Double.parseDouble(txtAltura.getText()),
-                Integer.parseInt(txtIdade.getText()));
+        //RECEBE OS VALORES DIGITADOS
+        String strPeso = txtPeso.getText();
+        String strAltura = txtAltura.getText();
+        String strIdade = txtIdade.getText();
+
+        if (strPeso.isEmpty() || strAltura.isEmpty() || strIdade.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos. ");
+        } else if (!rbutHomem.isSelected() && !rbutMulher.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Você deve selecionar um sexo.");
+        } else {
+            //VERIFICA SE TODOS OS CAMPOS COMEÇAM E TERMINAM COM NÚMEROS
+            boolean verificaPeso = strPeso.matches("^\\d.*");
+            boolean verificaAltura = strAltura.matches("^\\d.*");
+            boolean verificaIdade = strIdade.matches("^\\d.*");
+            if (verificaPeso == true && verificaAltura == true && verificaIdade == true) {
+                //CALCULA GASTO CALÓRICO
+                calculaGastoCal(Double.parseDouble(strPeso),
+                        Double.parseDouble(strAltura),
+                        Integer.parseInt(strIdade));
+            } else {
+                JOptionPane.showMessageDialog(null, "Todos os campos devem conter apenas números. ");
+            }
+        }
     }//GEN-LAST:event_butCalcularActionPerformed
 
     private void cboxNvlAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxNvlAtividadeActionPerformed
