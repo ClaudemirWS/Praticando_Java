@@ -202,7 +202,7 @@ public class Menu extends javax.swing.JFrame {
                 atualizaConsultas = ListaConsultas.Listar().get(i);
 
                 String[] linha = {atualizaConsultas.getNome(), atualizaConsultas.getCPF(), atualizaConsultas.getTelefone(),
-                    atualizaConsultas.getData(), atualizaConsultas.getPaciente(), atualizaConsultas.getconsRealizada()};
+                    atualizaConsultas.getData(), atualizaConsultas.getPaciente(), atualizaConsultas.getconsRealizada(), atualizaConsultas.getreceitaObs()};
 
                 tableModel.addRow(linha);
             }

@@ -11,6 +11,7 @@ public class Consulta {
     private String data;
     private String paciente;
     private String consRealizada;
+    private String receitaObs;
 
     //ACESSA E SETA DADOS DO PACIENTE
     public String getNome() {
@@ -59,6 +60,14 @@ public class Consulta {
 
     public void setconsRealizada(String consRealizada) {
         this.consRealizada = consRealizada;
+    }
+    
+    public String getreceitaObs() {
+        return receitaObs;
+    }
+
+    public void setreceitaObs(String receitaObs) {
+        this.receitaObs = receitaObs;
     }
 
 }

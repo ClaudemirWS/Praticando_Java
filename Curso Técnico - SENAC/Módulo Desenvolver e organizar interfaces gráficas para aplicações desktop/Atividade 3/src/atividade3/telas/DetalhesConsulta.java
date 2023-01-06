@@ -2,6 +2,7 @@ package atividade3.telas;
 
 import atividade3.model.Consulta;
 import atividade3.model.ListaConsultas;
+import javax.swing.JOptionPane;
 
 /**
  * @author Claudemir
@@ -112,10 +113,15 @@ public class DetalhesConsulta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void butFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butFinalizarActionPerformed
-        //MARCA A CONSULTA COMO REALIZADA OU NÃO
-        setRealizada();
-        //REMOVE A TELA DE CADASTRO E VOLTA AO MENU
-        dispose();
+
+        if (!camposVazios()) {
+            //MARCA A CONSULTA COMO REALIZADA OU NÃO
+            setRealizada();
+            //SALVA A RECEITA/OBSERVAÇÕES
+            setreceitaObs();
+            //REMOVE A TELA DE CADASTRO E VOLTA AO MENU
+            dispose();
+        }
     }//GEN-LAST:event_butFinalizarActionPerformed
 
     private void butCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCancelarActionPerformed
@@ -150,26 +156,57 @@ public class DetalhesConsulta extends javax.swing.JFrame {
         this.posConsulta = posConsulta;
     }
 
-    //VERIFICA SE A CONSULTA FOI REALIZADA E ATIVA OU NÃO A CAIXA DE TEXTO
+    //VERIFICA SE A CONSULTA FOI REALIZADA E ATIVA OU NÃO OS ELEMENTOS
     public void getconsRealizada(String consRealizada) {
         if (consRealizada.equals("Sim")) {
+            //TEXT AREA
+            txtDescricao.setEnabled(false);
+            //CHECK BOX
             cBoxConsRealizada.setSelected(true);
             cBoxConsRealizada.setEnabled(false);
+            //BOTÃO FINALIZAR
+            butFinalizar.setEnabled(false);
+            butFinalizar.setVisible(false);
         } else {
+            //TEXT AREA
+            txtDescricao.setEnabled(true);
+            //CHECK BOX
             cBoxConsRealizada.setSelected(false);
             cBoxConsRealizada.setEnabled(true);
+            //BOTÃO FINALIZAR
+            butFinalizar.setEnabled(true);
         }
     }
 
     //VERIFICA SE A CAIXA DE TEXTO FOI MARCADA OU NÃO
     private void setRealizada() {
         Consulta detalhesConsulta = ListaConsultas.Listar().get(posConsulta); //PEGA A LINHA QUE FOI SELECIONADA 
-        if (cBoxConsRealizada.isSelected()) {        
+        if (cBoxConsRealizada.isSelected()) {
             detalhesConsulta.setconsRealizada("Sim");
             cBoxConsRealizada.setSelected(false);
         } else {
             detalhesConsulta.setconsRealizada("Não");
         }
+    }
+
+    //ESCREVE A RECEITA E CONECTA A CONSULTA
+    private void setreceitaObs() {
+        Consulta detalhesConsulta = ListaConsultas.Listar().get(posConsulta); //PEGA A LINHA QUE FOI SELECIONADA 
+        detalhesConsulta.setreceitaObs(txtDescricao.getText());
+    }
+
+    private boolean camposVazios() {
+
+        boolean empty = true;
+
+        if (txtDescricao.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Você deve preencher o campo receita e observações.");
+        } else {
+            empty = false;
+        }
+
+        return empty;
+
     }
 
 }

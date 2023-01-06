@@ -34,7 +34,7 @@ public class NovaConsulta extends javax.swing.JFrame {
         txtCPF = new javax.swing.JTextField();
         txtData = new javax.swing.JTextField();
         butCadastrar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        butVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastrar Consulta");
@@ -73,11 +73,11 @@ public class NovaConsulta extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jButton1.setText("Voltar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        butVoltar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        butVoltar.setText("Voltar");
+        butVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                butVoltarActionPerformed(evt);
             }
         });
 
@@ -111,7 +111,7 @@ public class NovaConsulta extends javax.swing.JFrame {
                                     .addGroup(CadastrarLayout.createSequentialGroup()
                                         .addComponent(butCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(butVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(23, 23, 23))))
         );
@@ -140,7 +140,7 @@ public class NovaConsulta extends javax.swing.JFrame {
                 .addComponent(cBoxPaciente)
                 .addGap(33, 33, 33)
                 .addGroup(CadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(butVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(butCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
@@ -161,17 +161,19 @@ public class NovaConsulta extends javax.swing.JFrame {
 
     private void butCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCadastrarActionPerformed
 
+        if (!camposVazios()){
         //ADICIONA A LISTA
         inserirConsulta(getConsulta());
 
         //REMOVE A TELA DE CADASTRO E VOLTA AO MENU
         dispose();
+        }
     }//GEN-LAST:event_butCadastrarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void butVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butVoltarActionPerformed
         //REMOVE A TELA DE CADASTRO E VOLTA AO MENU
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_butVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,8 +213,8 @@ public class NovaConsulta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Cadastrar;
     private javax.swing.JButton butCadastrar;
+    private javax.swing.JButton butVoltar;
     private javax.swing.JCheckBox cBoxPaciente;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblCPF;
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblNome;
@@ -252,6 +254,27 @@ public class NovaConsulta extends javax.swing.JFrame {
 
         //MENSAGEM DE FEEDBACK
         JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+
+    }
+    
+    private boolean camposVazios() {
+
+        boolean empty = true;
+
+        if (txtNome.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Você deve preencher o campo nome.");
+        } else if (txtTelefone.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Você deve preencher o campo telefone.");
+        } else if (txtCPF.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Você deve preencher o campo cpf.");
+        } else if (txtData.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Você deve preencher o campo data.");
+        }
+        else {
+            empty = false;
+        }
+
+        return empty;
 
     }
 
