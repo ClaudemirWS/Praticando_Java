@@ -129,15 +129,6 @@ public class DetalhesConsulta extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_butCancelarActionPerformed
 
-    public static void main(String args[]) {
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DetalhesConsulta().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Detalhes;
     private javax.swing.JButton butCancelar;
@@ -195,6 +186,7 @@ public class DetalhesConsulta extends javax.swing.JFrame {
         detalhesConsulta.setreceitaObs(txtDescricao.getText());
     }
 
+    //VERIFICA SE OS CAMPOS ESTÃO EM BRANCO
     private boolean camposVazios() {
 
         boolean empty = true;

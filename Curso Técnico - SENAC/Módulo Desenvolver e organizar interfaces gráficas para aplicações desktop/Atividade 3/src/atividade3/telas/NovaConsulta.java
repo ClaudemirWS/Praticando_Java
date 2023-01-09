@@ -3,6 +3,7 @@ package atividade3.telas;
 import atividade3.model.Consulta;
 import atividade3.model.ListaConsultas;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * @author Claudemir
@@ -60,10 +61,19 @@ public class NovaConsulta extends javax.swing.JFrame {
         txtNome.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
 
         txtTelefone.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        txtTelefone.setToolTipText("(000)00000-0000");
+        txtTelefone.setActionCommand("<Not Set>");
+        txtTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefoneActionPerformed(evt);
+            }
+        });
 
         txtCPF.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        txtCPF.setToolTipText("000.000.000-00");
 
         txtData.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        txtData.setToolTipText("DD/MM/AAAA");
 
         butCadastrar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         butCadastrar.setText("Cadastrar");
@@ -161,13 +171,21 @@ public class NovaConsulta extends javax.swing.JFrame {
 
     private void butCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCadastrarActionPerformed
 
-        if (!camposVazios()){
-        //ADICIONA A LISTA
-        inserirConsulta(getConsulta());
+        if (!camposVazios()) {
+            if (!camposValidos()) {
+                //ADICIONA A LISTA
+                inserirConsulta(getConsulta());
+
+                txtNome.setText("");
+                txtTelefone.setText("");
+                txtCPF.setText("");
+                txtData.setText("");
+
+            }
+        }
 
         //REMOVE A TELA DE CADASTRO E VOLTA AO MENU
         dispose();
-        }
     }//GEN-LAST:event_butCadastrarActionPerformed
 
     private void butVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butVoltarActionPerformed
@@ -175,40 +193,9 @@ public class NovaConsulta extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_butVoltarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NovaConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NovaConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NovaConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NovaConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NovaConsulta().setVisible(true);
-            }
-        });
-    }
+    private void txtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefoneActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Cadastrar;
@@ -226,6 +213,10 @@ public class NovaConsulta extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 
+    private final String[] tableColumns = {"Paciente", "CPF", "Telefone", "Data", "Já era paciente?", "Consulta finalizada"};
+    DefaultTableModel tableModel = new DefaultTableModel(tableColumns, 0);
+
+    //RETORNA OS VALORES PARA INSERIR NA LISTA
     private Consulta getConsulta() {
 
         //RECEBE DADOS DA CONSULTA
@@ -235,7 +226,7 @@ public class NovaConsulta extends javax.swing.JFrame {
         consulta.setTelefone(txtTelefone.getText());
         consulta.setData(txtData.getText());
         //VERIFICA SE JÁ FOI PACIENTE
-        if (cBoxPaciente.isSelected()){
+        if (cBoxPaciente.isSelected()) {
             consulta.setPaciente("Sim");
             cBoxPaciente.setSelected(false);
         } else {
@@ -247,6 +238,7 @@ public class NovaConsulta extends javax.swing.JFrame {
         return consulta;
     }
 
+    //INSERE OS VALORES NA LISTA
     private void inserirConsulta(Consulta consulta) {
 
         //ADICIONA DADOS A LISTA
@@ -256,26 +248,83 @@ public class NovaConsulta extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
 
     }
-    
+
+    //VERIFICA SE OS CAMPOS ESTÃO EM BRANCO
     private boolean camposVazios() {
 
         boolean empty = true;
 
         if (txtNome.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Você deve preencher o campo nome.");
+            JOptionPane.showMessageDialog(rootPane, "Digite o nome.");
         } else if (txtTelefone.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Você deve preencher o campo telefone.");
+            JOptionPane.showMessageDialog(rootPane, "Digite o telefone, formato (DDD)00000-0000.");
         } else if (txtCPF.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Você deve preencher o campo cpf.");
+            JOptionPane.showMessageDialog(rootPane, "Digite o CPF, formato 000.000.000-00.");
         } else if (txtData.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Você deve preencher o campo data.");
-        }
-        else {
+            JOptionPane.showMessageDialog(rootPane, "Digite a data, formato DD/MM/AAAA.");
+        } else {
             empty = false;
         }
 
         return empty;
 
+    }
+
+    //VAI VERIFICAR A FORMATAÇÃO DAS STRINGS E SE FOI PREENCHIDO CORRETAMENTE
+    private boolean camposValidos() {
+
+        boolean valido = true;
+
+        String strNome = txtNome.getText();
+        String strTelefone = txtTelefone.getText();
+        String strCPF = txtCPF.getText();
+        String strData = txtData.getText();
+
+        boolean verificaNome = strNome.matches("^[a-zA-Z ]*$");
+        boolean verificaTelefone = strTelefone.matches("[(][0-9]{3}[)][0-9]{5}[-][0-9]{4}");
+        boolean verificaCPF = strCPF.matches("[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}");
+        boolean verificaData = strData.matches("[0-9]{2}[/][0-9]{2}[/][0-9]{4}");
+
+        if (verificaNome == false) {
+            JOptionPane.showMessageDialog(rootPane, "Nome deve conter apenas letras.");
+        } else if (verificaTelefone == false) {
+            JOptionPane.showMessageDialog(rootPane, "Telefone deve estar no formato (DDD)00000-0000.");
+        } else if (verificaCPF == false) {
+            JOptionPane.showMessageDialog(rootPane, "CPF deve estar no formato 000.000.000-00.");
+        } else if (verificaData == false) {
+            JOptionPane.showMessageDialog(rootPane, "Data deve estar no formato DD/MM/AAAA.");
+        } else {
+            valido = false;
+        }
+
+        return valido;
+    }
+
+    //ATUALIZA OS ITENS NA TABELA
+    protected DefaultTableModel getModeloTabela() {
+
+        if (!ListaConsultas.Listar().isEmpty()) {
+
+            Consulta atualizaConsultas;
+
+            tableModel = new DefaultTableModel(tableColumns, 0);
+
+            for (int i = 0; i < ListaConsultas.Listar().size(); i++) {
+
+                atualizaConsultas = ListaConsultas.Listar().get(i);
+
+                String[] linha = {atualizaConsultas.getNome(), atualizaConsultas.getCPF(), atualizaConsultas.getTelefone(),
+                    atualizaConsultas.getData(), atualizaConsultas.getPaciente(), atualizaConsultas.getconsRealizada(), atualizaConsultas.getreceitaObs()};
+
+                tableModel.addRow(linha);
+            }
+
+        } else {
+
+            tableModel = new DefaultTableModel(tableColumns, 0);
+        }
+
+        return tableModel;
     }
 
 }

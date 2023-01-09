@@ -10,6 +10,10 @@ import javax.swing.JOptionPane;
  */
 public class Menu extends javax.swing.JFrame {
 
+    //INICIA CLASSES QUE SERÃO UTILIZADAS
+    private NovaConsulta consulta  = new NovaConsulta();
+    private DetalhesConsulta detalhes = new DetalhesConsulta();
+
     public Menu() {
         initComponents();
     }
@@ -30,7 +34,7 @@ public class Menu extends javax.swing.JFrame {
         butNovConsulta = new javax.swing.JButton();
         butExcConsulta = new javax.swing.JButton();
         butFinConsulta = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        butAtualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal");
@@ -80,11 +84,11 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jButton1.setText("Atualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        butAtualizar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        butAtualizar.setText("Atualizar");
+        butAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                butAtualizarActionPerformed(evt);
             }
         });
 
@@ -105,7 +109,7 @@ public class Menu extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MenuLayout.createSequentialGroup()
                             .addComponent(lblTitulo)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(butAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(ScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
@@ -118,7 +122,7 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(lblTitulo))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)))
+                        .addComponent(butAtualizar)))
                 .addGap(18, 18, 18)
                 .addComponent(ScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -145,11 +149,12 @@ public class Menu extends javax.swing.JFrame {
 
     private void butNovConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butNovConsultaActionPerformed
         consulta.setVisible(true);
+        atualizarTabela();
     }//GEN-LAST:event_butNovConsultaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void butAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butAtualizarActionPerformed
         atualizarTabela();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_butAtualizarActionPerformed
 
     private void butExcConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butExcConsultaActionPerformed
         excluirConsulta(getposConsulta());
@@ -159,62 +164,21 @@ public class Menu extends javax.swing.JFrame {
         detalhaConsulta(getposConsulta());
     }//GEN-LAST:event_butFinConsultaActionPerformed
 
-    public static void main(String args[]) {
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Menu().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Menu;
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JTable Tabela;
+    private javax.swing.JButton butAtualizar;
     private javax.swing.JButton butExcConsulta;
     private javax.swing.JButton butFinConsulta;
     private javax.swing.JButton butNovConsulta;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 
-    //INICIA CLASSES QUE SERÃO UTILIZADAS
-    NovaConsulta consulta = new NovaConsulta();
-    DetalhesConsulta detalhes = new DetalhesConsulta();
-
-    //DEFINE O MODELO DA TABELA
-    private final String[] tableColumns = {"Paciente", "CPF", "Telefone", "Data", "Já era paciente?", "Consulta finalizada"};
-    DefaultTableModel tableModel = new DefaultTableModel(tableColumns, 0);
-
     //ATUALIZA OS ITENS NA TABELA
-    protected void atualizarTabela() {
+    public void atualizarTabela() {
 
-        if (!ListaConsultas.Listar().isEmpty()) {
-
-            Consulta atualizaConsultas;
-
-            tableModel = new DefaultTableModel(tableColumns, 0);
-
-            for (int i = 0; i < ListaConsultas.Listar().size(); i++) {
-
-                atualizaConsultas = ListaConsultas.Listar().get(i);
-
-                String[] linha = {atualizaConsultas.getNome(), atualizaConsultas.getCPF(), atualizaConsultas.getTelefone(),
-                    atualizaConsultas.getData(), atualizaConsultas.getPaciente(), atualizaConsultas.getconsRealizada(), atualizaConsultas.getreceitaObs()};
-
-                tableModel.addRow(linha);
-            }
-
-            Tabela.setModel(tableModel);
-
-        } else {
-
-            tableModel = new DefaultTableModel(tableColumns, 0);
-            Tabela.setModel(tableModel);
-        }
-
+        Tabela.setModel(consulta.getModeloTabela());
     }
 
     //PEGA A POSIÇÃO DA LINHA NA TABELA
@@ -271,6 +235,6 @@ public class Menu extends javax.swing.JFrame {
         } else {
             Tabela.clearSelection();
         }
-    }
+    } 
 
 }
