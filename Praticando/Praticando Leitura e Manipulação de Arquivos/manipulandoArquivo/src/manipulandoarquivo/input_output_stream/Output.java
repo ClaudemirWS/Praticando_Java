@@ -1,5 +1,6 @@
 package manipulandoarquivo.input_output_stream;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
@@ -13,7 +14,8 @@ public class Output {
         String data = "Manipulando arquivos com Java";
 
         try {
-            OutputStream out = new FileOutputStream("C:\\teste\\output.txt");
+            File obj = new File("C:\\output.txt");
+            OutputStream out = new FileOutputStream(obj);
 
             // Convertendo a string em bytes
             byte[] dataBytes = data.getBytes();

@@ -1,5 +1,6 @@
 package arquivoCSV;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
@@ -13,7 +14,8 @@ public class gravarCSV {
 
     public static void main(String[] args) throws IOException {
 
-        FileWriter csvWriter = new FileWriter("C:\\teste\\exemplo.csv");
+        File obj = new File("C:\\exemplo.csv");
+        FileWriter csvWriter = new FileWriter(obj);
         //criando as informações do cabeçalho
         csvWriter.append("disciplina");
         csvWriter.append(";");

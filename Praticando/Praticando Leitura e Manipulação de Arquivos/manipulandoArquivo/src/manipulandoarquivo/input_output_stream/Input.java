@@ -13,13 +13,13 @@ public class Input {
         byte[] array = new byte[100];
 
         try {
-            InputStream input = new FileInputStream("C:\\teste\\input.txt");
+            InputStream input = new FileInputStream("C:\\input.txt");
 
             System.out.println("Bytes disponíveis no arquivo " + input.available());
 
             // Ler byte a byte do fluxo de entrada
             input.read(array);
-            System.out.println("Dados lido do arquivo: ");
+            System.out.println("Cariologia: ");
 
             // Convertendo array de bytes em string
             String data = new String(array);

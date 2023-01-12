@@ -14,14 +14,14 @@ public class Criar {
     public static void main(String[] args) {
 
         try {
-            File obj = new File("C://teste//arquivo.txt");
+            File obj = new File("C://arquivo.txt");
             if (obj.createNewFile()) {
                 System.out.println("Arquivo criado: " + obj.getName());
             } else {
-                System.out.println("Arquivo já existe.");
+                System.out.println("Arquivo já existe. ");
             }
         } catch (IOException e) {
-            System.out.println("Ocorreu um erro." + e.getMessage());
+            System.out.println("Ocorreu um erro. " + e.getMessage());
         }
     }
 }
