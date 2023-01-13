@@ -1,15 +1,18 @@
 package aferimentopressao;
 
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  * @author Claudemir
  */
+//NOTA: EXECUTAR PROGRAMA COM PRIVILÉGIOS DE ADMINISTRADOR NO WINDOWS
 public class Main extends javax.swing.JFrame {
 
     /**
@@ -18,6 +21,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         lerDados();
+        atalhosTeclado();
     }
 
     @SuppressWarnings("unchecked")
@@ -46,17 +50,30 @@ public class Main extends javax.swing.JFrame {
         lblData.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         lblData.setText("Data");
 
+        txtData.setToolTipText("DD/MM/AAAA");
+        txtData.setNextFocusableComponent(txtHora);
+
         lblHora.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         lblHora.setText("Hora");
+
+        txtHora.setToolTipText("00:00");
+        txtHora.setNextFocusableComponent(txtDiastolica);
 
         lblDiastolica.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         lblDiastolica.setText("Pressão diastólica");
 
+        txtDiastolica.setToolTipText("Escreva somente números");
+        txtDiastolica.setNextFocusableComponent(txtSistolica);
+
         lblSistolica.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         lblSistolica.setText("Pressão sistólica");
 
+        txtSistolica.setToolTipText("Escreva somente números");
+        txtSistolica.setNextFocusableComponent(cboxExtresse);
+
         butnSalvar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         butnSalvar.setText("Salvar");
+        butnSalvar.setToolTipText("Clique ou use ALT + D para Salvar.");
         butnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 butnSalvarActionPerformed(evt);
@@ -65,6 +82,8 @@ public class Main extends javax.swing.JFrame {
 
         cboxExtresse.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         cboxExtresse.setText("Em situação de estresse");
+        cboxExtresse.setToolTipText("Marque somente se a medição tiver sido realizada após ou durante uma situação estressante.");
+        cboxExtresse.setNextFocusableComponent(butnSalvar);
 
         SalvarPressao.setLayer(lblData, javax.swing.JLayeredPane.DEFAULT_LAYER);
         SalvarPressao.setLayer(txtData, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -133,6 +152,22 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        lblData.getAccessibleContext().setAccessibleDescription("Data");
+        txtData.getAccessibleContext().setAccessibleName("Digite a data no formato DD/MM/AAAA");
+        txtData.getAccessibleContext().setAccessibleDescription("Digite a data no formato DD/MM/AAAA");
+        lblHora.getAccessibleContext().setAccessibleDescription("Hora");
+        txtHora.getAccessibleContext().setAccessibleName("Digite a hora no formato 00:00");
+        txtHora.getAccessibleContext().setAccessibleDescription("Digite a hora no formato 00:00");
+        lblDiastolica.getAccessibleContext().setAccessibleDescription("Pressão diastólica");
+        txtDiastolica.getAccessibleContext().setAccessibleName("Digite a pressão diastólica, somente números.");
+        txtDiastolica.getAccessibleContext().setAccessibleDescription("Digite a pressão diastólica, somente números.");
+        lblSistolica.getAccessibleContext().setAccessibleDescription("Pressão sistólica");
+        txtSistolica.getAccessibleContext().setAccessibleName("Digite a pressão sistólica, somente números.");
+        txtSistolica.getAccessibleContext().setAccessibleDescription("Digite a pressão sistólica, somente números.");
+        butnSalvar.getAccessibleContext().setAccessibleName("Botão de salvar");
+        butnSalvar.getAccessibleContext().setAccessibleDescription("Botão de salvar");
+        cboxExtresse.getAccessibleContext().setAccessibleName("Caixa para marcar situação de estresse");
+
         Resultado.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Resultado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 24))); // NOI18N
 
         tabela.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -147,7 +182,10 @@ public class Main extends javax.swing.JFrame {
 
             }
         ));
+        tabela.setToolTipText("Mostra a última leitura");
         jScrollPane.setViewportView(tabela);
+        tabela.getAccessibleContext().setAccessibleDescription("Resultado da medicão");
+        tabela.getAccessibleContext().setAccessibleParent(Resultado);
 
         Resultado.setLayer(jScrollPane, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -189,17 +227,30 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        Resultado.getAccessibleContext().setAccessibleName("Resultado de medições");
+        Resultado.getAccessibleContext().setAccessibleDescription("Resultado de medições");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void butnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butnSalvarActionPerformed
 
-        File txt = new File("C:\\medicao.txt");
+        if (!camposVazios()) {
+            if (!camposValidos()) {
+                File txt = new File("C:\\medicao.txt");
 
-        escreverDados(txt);
+                escreverDados(txt);
 
-        lerDados();
+                lerDados();
 
+                JOptionPane.showMessageDialog(rootPane, "Salvo! Leitura disponível na tabela Resultado.");
+
+                txtData.setText("");
+                txtHora.setText("");
+                txtDiastolica.setText("");
+                txtSistolica.setText("");
+            }
+        }
     }//GEN-LAST:event_butnSalvarActionPerformed
 
     public static void main(String args[]) {
@@ -272,8 +323,8 @@ public class Main extends javax.swing.JFrame {
         medicao = ("Data: " + txtData.getText()
                 + "\nHora: " + txtHora.getText()
                 + "\nEm situação de estresse: " + estresse
-                + "\nPressão Sistólica: " + txtSistolica.getText()
-                + "\nPressão Distólica: " + txtDiastolica.getText());
+                + "\nPressão Distólica: " + txtDiastolica.getText()
+                + "\nPressão Sistólica: " + txtSistolica.getText());
 
         return medicao;
 
@@ -289,8 +340,7 @@ public class Main extends javax.swing.JFrame {
 
             // Grava dados no OutputStream
             out.write(dataBytes);
-            System.out.println("Arquivo criado com sucesso.");
-            
+
             // Fecha o OutputStream
             out.close();
         } catch (Exception e) {
@@ -313,6 +363,61 @@ public class Main extends javax.swing.JFrame {
         } catch (FileNotFoundException e) {
             System.out.println("Não consegui ler.");
         }
+    }
+
+    //VERIFICA SE OS CAMPOS ESTÃO EM BRANCO
+    private boolean camposVazios() {
+
+        boolean empty = true;
+
+        if (txtData.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Digite a data, formato DD/MM/AAAA.");
+        } else if (txtHora.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Digite a hora, formato 00:00.");
+        } else if (txtDiastolica.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Digite a pressão diastólica.");
+        } else if (txtSistolica.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Digite pressão sistólica.");
+        } else {
+            empty = false;
+        }
+
+        return empty;
+    }
+
+    //VAI VERIFICAR A FORMATAÇÃO DAS STRINGS E SE FOI PREENCHIDO CORRETAMENTE
+    private boolean camposValidos() {
+
+        boolean valido = true;
+
+        String strData = txtData.getText();
+        String strHora = txtHora.getText();
+        String strDiastolica = txtDiastolica.getText();
+        String strSistolica = txtSistolica.getText();
+
+        boolean verificaData = strData.matches("[0-9]{2}[/][0-9]{2}[/][0-9]{4}");
+        boolean verificaHora = strHora.matches("[0-9]{2}[:][0-9]{2}");
+        boolean verificaDiastolica = strDiastolica.matches("^[0-9]*$");
+        boolean verificaSistolica = strSistolica.matches("^[0-9]*$");
+
+        if (verificaData == false) {
+            JOptionPane.showMessageDialog(rootPane, "Data deve estar no formato DD/MM/AAAA.");
+        } else if (verificaHora == false) {
+            JOptionPane.showMessageDialog(rootPane, "Hora deve estar no formato 00:00.");
+        } else if (verificaDiastolica == false) {
+            JOptionPane.showMessageDialog(rootPane, "Pressão Diastólica deve conter apenas números.");
+        } else if (verificaSistolica == false) {
+            JOptionPane.showMessageDialog(rootPane, "Pressão Sistólica deve conter apenas números.");
+        } else {
+            valido = false;
+        }
+        return valido;
+    }
+
+    //MÉTODO SEM RETORNO COM DEFINIÇÕES DE ATALHOS NO TECLADO
+    public void atalhosTeclado() {
+        //ALT+S PARA SALVAR
+        butnSalvar.setMnemonic(KeyEvent.VK_S);
     }
 
 }

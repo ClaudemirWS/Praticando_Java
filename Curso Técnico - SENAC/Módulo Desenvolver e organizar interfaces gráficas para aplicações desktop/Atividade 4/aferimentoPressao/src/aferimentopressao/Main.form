@@ -133,8 +133,21 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Data"/>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Data"/>
+          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtData">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="DD/MM/AAAA"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtHora"/>
+            </Property>
+          </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Digite a data no formato DD/MM/AAAA"/>
+            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Digite a data no formato DD/MM/AAAA"/>
+          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblHora">
           <Properties>
@@ -143,8 +156,21 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Hora"/>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Hora"/>
+          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtHora">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="00:00"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtDiastolica"/>
+            </Property>
+          </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Digite a hora no formato 00:00"/>
+            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Digite a hora no formato 00:00"/>
+          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDiastolica">
           <Properties>
@@ -153,8 +179,21 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Press&#xe3;o diast&#xf3;lica"/>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Press&#xe3;o diast&#xf3;lica"/>
+          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDiastolica">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Escreva somente n&#xfa;meros"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtSistolica"/>
+            </Property>
+          </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Digite a press&#xe3;o diast&#xf3;lica, somente n&#xfa;meros."/>
+            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Digite a press&#xe3;o diast&#xf3;lica, somente n&#xfa;meros."/>
+          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblSistolica">
           <Properties>
@@ -163,8 +202,21 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Press&#xe3;o sist&#xf3;lica"/>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Press&#xe3;o sist&#xf3;lica"/>
+          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSistolica">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Escreva somente n&#xfa;meros"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="cboxExtresse"/>
+            </Property>
+          </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Digite a press&#xe3;o sist&#xf3;lica, somente n&#xfa;meros."/>
+            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Digite a press&#xe3;o sist&#xf3;lica, somente n&#xfa;meros."/>
+          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JButton" name="butnSalvar">
           <Properties>
@@ -172,7 +224,12 @@
               <Font name="Dialog" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salvar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Clique ou use ALT + D para Salvar."/>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Bot&#xe3;o de salvar"/>
+            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Bot&#xe3;o de salvar"/>
+          </AccessibilityProperties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butnSalvarActionPerformed"/>
           </Events>
@@ -183,7 +240,14 @@
               <Font name="Dialog" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Em situa&#xe7;&#xe3;o de estresse"/>
+            <Property name="toolTipText" type="java.lang.String" value="Marque somente se a medi&#xe7;&#xe3;o tiver sido realizada ap&#xf3;s ou durante uma situa&#xe7;&#xe3;o estressante."/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="butnSalvar"/>
+            </Property>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Caixa para marcar situa&#xe7;&#xe3;o de estresse"/>
+          </AccessibilityProperties>
         </Component>
       </SubComponents>
     </Container>
@@ -197,6 +261,10 @@
           </Border>
         </Property>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Resultado de medi&#xe7;&#xf5;es"/>
+        <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Resultado de medi&#xe7;&#xf5;es"/>
+      </AccessibilityProperties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -234,7 +302,14 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="0" rowCount="4"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Mostra a &#xfa;ltima leitura"/>
               </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Resultado da medic&#xe3;o"/>
+                <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="Resultado"/>
+                </Property>
+              </AccessibilityProperties>
             </Component>
           </SubComponents>
         </Container>
