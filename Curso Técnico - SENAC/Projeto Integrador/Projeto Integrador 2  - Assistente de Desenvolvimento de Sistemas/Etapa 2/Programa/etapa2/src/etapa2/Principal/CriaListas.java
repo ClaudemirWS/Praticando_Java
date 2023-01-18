@@ -2,8 +2,6 @@ package etapa2.Principal;
 
 import etapa2.modeloConteudo.Filme;
 import etapa2.modeloConteudo.Serie;
-import etapa2.guardaDados.Streaming;
-import etapa2.guardaDados.Genero;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,29 +16,24 @@ public class CriaListas {
     private List<Filme> Filmes = new ArrayList<>();
     //FUNCIONALIDADES DO PROGRAMA
     private int programa = 0;
-    private Streaming streaming = new Streaming();
-    private Genero genero = new Genero();
 
     //VAI ATUALIZAR A LISTA
     public void atualizaListas() {
-        //ATUALIZA OS GENEROS E STREAMINGS DISPONÍVEIS 
-        streaming.atualizaStreaming();
-        genero.atualizaGenero();
         //INICIA O SALVAMENTO DE UM NOVO FILME OU SÉRIE
         do {
             Scanner sc = new Scanner(System.in);
-            System.out.println("\t\t===== ADICIONAR NOVO =====");
+            System.out.println("\t\t\n===== ADICIONAR NOVO =====");
             System.out.print("1 - Novo Filme | 2 - Nova Serie | 3 - Voltar: ");
             programa = sc.nextInt();
             switch (programa) {
                 case 1 -> {
                     //CADASTRA NOVO FILME
-                    Filme filme = new Filme(genero.getGenero(), streaming.getStreaming());
+                    Filme filme = new Filme();
                     Filmes.add(filme);
                 }
                 case 2 -> {
                     //CADASTRA NOVA SERIE
-                    Serie serie = new Serie(genero.getGenero(), streaming.getStreaming());
+                    Serie serie = new Serie();
                     Series.add(serie);
                 }
                 //VOLTA AO MENU OU APRESENTA MENSAGEM DE ERRO

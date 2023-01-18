@@ -16,8 +16,14 @@ public class Genero {
     private int programa = 0;
     private String escolha = "";
 
+    //CONSTUTOR
+    public Genero() {
+        //ATUALIZA LISTA DE GENEROS
+        atualizaGenero();
+    }
+
     //SERÃO COLOCADOS EM UM COMBO BOX QUANDO HOUVER INTERFACE
-    public void atualizaGenero() {
+    private void atualizaGenero() {
         genero.add("Ação");
         genero.add("Aventura");
         genero.add("Animação");
@@ -39,13 +45,21 @@ public class Genero {
     //LISTA GENEROS E RETORNA VALOR ESCOLHIDO NO TECLADO
     public String getGenero() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n===== SELECIONE UM GÊNERO =====");
-        for (int i = 0; i < genero.size(); i++) {
-            System.out.println(i + " = " + genero.get(i));
+        try {
+            System.out.println("\n===== SELECIONE UM GÊNERO =====");
+            for (int i = 0; i < genero.size(); i++) {
+                System.out.println(i + " = " + genero.get(i));
+            }
+            System.out.print("Sua escolha: ");
+            programa = sc.nextInt();
+            escolha = String.valueOf(genero.get(programa));
+        } catch (IndexOutOfBoundsException ex) {
+            System.out.println("\nSelecione uma das opções listadas.");
+        } finally {
+            System.out.print("\nSua escolha: ");
+            programa = sc.nextInt();
+            escolha = String.valueOf(genero.get(programa));
         }
-        System.out.print("Sua escolha: ");
-        programa = sc.nextInt();
-        escolha = String.valueOf(genero.get(programa));
 
         return escolha;
     }

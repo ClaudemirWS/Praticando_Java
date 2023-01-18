@@ -1,5 +1,7 @@
 package etapa2.modeloConteudo;
 
+import etapa2.guardaDados.Genero;
+import etapa2.guardaDados.Streaming;
 import java.util.Scanner;
 
 /**
@@ -9,29 +11,20 @@ public class Filme {
 
     //ATRIBUTOS DO FILME
     private String nome, genero, streaming;
+    private Streaming nomeStreaming = new Streaming();
+    private Genero nomeGenero = new Genero();
 
     //CONSTRUTOR
-    public Filme(String genero, String streaming) {
+    public Filme() {
+        recebeDadosFilme();
+    }
+
+    private void recebeDadosFilme() {
         Scanner sc = new Scanner(System.in);
         System.out.print("\nNome do filme: ");
         this.nome = sc.nextLine().strip();
-        this.genero = genero;
-        this.streaming = streaming;
-    }
-
-    //RECEBE O NOME
-    public String getNome() {
-        return nome;
-    }
-
-    //RECEBE O GÊNERO
-    public String getGenero() {
-        return genero;
-    }
-
-    //RECEBE O GÊNERO
-    public String getSteaming() {
-        return streaming;
+        this.streaming = nomeStreaming.getStreaming();
+        this.genero = nomeGenero.getGenero();
     }
 
     //RETORNA UMA MENSAGEM DESCREVENDO O FILME 

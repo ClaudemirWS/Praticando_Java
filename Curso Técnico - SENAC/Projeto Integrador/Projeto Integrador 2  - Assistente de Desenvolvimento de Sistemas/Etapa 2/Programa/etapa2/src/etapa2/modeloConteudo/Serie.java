@@ -1,5 +1,7 @@
 package etapa2.modeloConteudo;
 
+import etapa2.guardaDados.Genero;
+import etapa2.guardaDados.Streaming;
 import java.util.Scanner;
 
 /**
@@ -9,29 +11,20 @@ public class Serie {
 
     //ATRIBUTOS DA SERIE
     private String nome, genero, streaming;
+    private Streaming nomeStreaming = new Streaming();
+    private Genero nomeGenero = new Genero();
 
     //CONSTRUTOR
-    public Serie(String genero, String streaming) {
+    public Serie() {
+        recebeDadosSerie();
+    }
+
+    private void recebeDadosSerie() {
         Scanner sc = new Scanner(System.in);
         System.out.print("\nNome da serie: ");
         this.nome = sc.nextLine();
-        this.genero = genero;
-        this.streaming = streaming;
-    }
-
-    //RECEBE O NOME
-    public String getNome() {
-        return nome;
-    }
-
-    //RECEBE O GÊNERO
-    public String getGenero() {
-        return genero;
-    }
-
-    //RECEBE O GÊNERO
-    public String getSteaming() {
-        return streaming;
+        this.genero = nomeGenero.getGenero();
+        this.streaming = nomeStreaming.getStreaming();
     }
 
     //RETORNA UMA MENSAGEM DESCREVENDO A SERIE 
