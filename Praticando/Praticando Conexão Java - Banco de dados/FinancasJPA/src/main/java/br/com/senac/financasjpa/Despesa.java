@@ -23,6 +23,11 @@ public class Despesa {
 
     private LocalDate data;
 
+    /**
+     * getters e setter
+     *
+     * @return s
+     */
     public int getId() {
         return id;
     }
