@@ -1,5 +1,11 @@
 package etapa4.telas;
 
+import etapa4.Principal.CriaListas;
+import etapa4.modeloConteudo.Conteudo;
+import etapa4.telas.ListadeFilmes;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  * @author Claudemir
  */
@@ -16,7 +22,7 @@ public class AdicionarNovo extends javax.swing.JFrame {
         Background = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
         lblNomeFilme = new javax.swing.JLabel();
-        txtNomeFilme = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         lblTipo = new javax.swing.JLabel();
         cboxTipo = new javax.swing.JComboBox<>();
         lblGenero = new javax.swing.JLabel();
@@ -38,11 +44,6 @@ public class AdicionarNovo extends javax.swing.JFrame {
         lblTipo.setText("Tipo:");
 
         cboxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filme", "Série" }));
-        cboxTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxTipoActionPerformed(evt);
-            }
-        });
 
         lblGenero.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lblGenero.setText("Gênero:");
@@ -64,6 +65,11 @@ public class AdicionarNovo extends javax.swing.JFrame {
 
         btnConfirmar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
@@ -82,7 +88,7 @@ public class AdicionarNovo extends javax.swing.JFrame {
                             .addComponent(lblNomeFilme))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNomeFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cboxGenero, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(BackgroundLayout.createSequentialGroup()
                         .addComponent(lblStreaming)
@@ -107,7 +113,7 @@ public class AdicionarNovo extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblNomeFilme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNomeFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,13 +147,19 @@ public class AdicionarNovo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cboxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxTipoActionPerformed
-
-    }//GEN-LAST:event_cboxTipoActionPerformed
-
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+
+        //ADICIONA A LISTA
+        inserirConteudo(getConteudo());
+
+        txtNome.setText("");
+
+        dispose();
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -192,7 +204,63 @@ public class AdicionarNovo extends javax.swing.JFrame {
     private javax.swing.JLabel lblNomeFilme;
     private javax.swing.JLabel lblStreaming;
     private javax.swing.JLabel lblTipo;
-    private javax.swing.JTextField txtNomeFilme;
+    private javax.swing.JTextField txtNome;
     private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
+
+    private final String[] tableColumns = {"Nome", "Gênero", "Streaming"};
+    DefaultTableModel tableModel = new DefaultTableModel(tableColumns, 0);
+
+    //INSERE OS VALORES NA LISTA
+    private void inserirConteudo(Conteudo conteudo) {
+
+        //ADICIONA DADOS A LISTA
+        if (conteudo.getTipo().equals("Filme")) {
+            CriaListas.AdicionarFilme(conteudo);
+        } else if (conteudo.getTipo().equals("Série")) {
+            CriaListas.AdicionarSerie(conteudo);
+        }
+
+        //MENSAGEM DE FEEDBACK
+        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+
+    }
+
+    //RETORNA OS VALORES DE UM FILME
+    private Conteudo getConteudo() {
+
+        //RECEBE DADOS DA CONSULTA
+        Conteudo conteudo = new Conteudo();
+        conteudo.setNome(txtNome.getText());
+        conteudo.setGenero(cboxGenero.getSelectedItem().toString());
+        conteudo.setStreaming(cboxStreaming.getSelectedItem().toString());
+        conteudo.setTipo(cboxTipo.getSelectedItem().toString());
+        return conteudo;
+    }
+
+    //ATUALIZA OS ITENS NA TABELA
+    protected DefaultTableModel getModeloTabela() {
+
+        if (!CriaListas.ListarFilmes().isEmpty()) {
+
+            Conteudo atualizaConteudos;
+
+            tableModel = new DefaultTableModel(tableColumns, 0);
+
+            for (int i = 0; i < CriaListas.ListarFilmes().size(); i++) {
+
+                atualizaConteudos = CriaListas.ListarFilmes().get(i);
+
+                String[] linha = {atualizaConteudos.getNome(), atualizaConteudos.getGenero(), atualizaConteudos.getStreaming()};
+
+                tableModel.addRow(linha);
+            }
+
+        } else {
+
+            tableModel = new DefaultTableModel(tableColumns, 0);
+        }
+
+        return tableModel;
+    }
 }

@@ -31,6 +31,11 @@ public class Menu extends javax.swing.JFrame {
 
         btnListaFilmes.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnListaFilmes.setText("Lista de Filmes");
+        btnListaFilmes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaFilmesActionPerformed(evt);
+            }
+        });
 
         btnListaSeries.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnListaSeries.setText(" Lista de Séries");
@@ -48,18 +53,19 @@ public class Menu extends javax.swing.JFrame {
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAddNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addComponent(btnListaFilmes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnListaSeries)))
+                        .addGap(144, 144, 144)
+                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAddNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(BackgroundLayout.createSequentialGroup()
+                                .addComponent(btnListaFilmes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnListaSeries))))
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(153, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(238, 238, 238))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,9 +76,8 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnListaSeries, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnListaFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
-                .addComponent(btnSair)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
+                .addComponent(btnSair))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -100,6 +105,12 @@ public class Menu extends javax.swing.JFrame {
         AdicionarNovo novoItem = new AdicionarNovo();
         novoItem.setVisible(true);
     }//GEN-LAST:event_btnAddNovoActionPerformed
+
+    private void btnListaFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaFilmesActionPerformed
+        ListadeFilmes listafilmes = new ListadeFilmes();
+        listafilmes.atualizarTabela();
+        listafilmes.setVisible(true);
+    }//GEN-LAST:event_btnListaFilmesActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

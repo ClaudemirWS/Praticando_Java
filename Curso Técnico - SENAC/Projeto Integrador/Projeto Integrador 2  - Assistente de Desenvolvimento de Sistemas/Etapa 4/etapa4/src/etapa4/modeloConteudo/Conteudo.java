@@ -3,14 +3,14 @@ package etapa4.modeloConteudo;
 /**
  * @author Claudemir Souza
  */
-public class Filme {
+public class Conteudo {
 
 
-    //ATRIBUTOS DO FILME
-    private String nome, genero, streaming;
+    //ATRIBUTOS DO CONTEÚDO
+    private String nome, genero, streaming, tipo;
 
     //CONSTRUTOR
-    public Filme() {
+    public Conteudo() {
 
     }
     
@@ -36,6 +36,14 @@ public class Filme {
 
     public void setStreaming(String streaming) {
         this.streaming = streaming;
+    }
+    
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 }

@@ -1,7 +1,6 @@
 package etapa4.Principal;
 
-import etapa4.modeloConteudo.Filme;
-import etapa4.modeloConteudo.Serie;
+import etapa4.modeloConteudo.Conteudo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +9,28 @@ import java.util.List;
  */
 public class CriaListas {
 
-    //LISTA DE FILMES E SÉRIES
-    private List<Serie> Series = new ArrayList<>();
-    private List<Filme> Filmes = new ArrayList<>();
+    //CRIA LISTAS
+    private static final List<Conteudo> filmes = new ArrayList<>();
+    private static final List<Conteudo> series = new ArrayList<>();
+
+    //RETORNA LISTA DE FILMES
+    public static List<Conteudo> ListarFilmes() {
+        return filmes;
+    }
+
+    //RETORNA LISTA DE SERIES
+    public static List<Conteudo> ListarSeries() {
+        return series;
+    }
+
+    //ADICIONA FILME A LISTA
+    public static void AdicionarFilme(Conteudo filme) {
+        filmes.add(filme);
+    }
+    
+    //ADICIONA SERIE A LISTA
+    public static void AdicionarSerie(Conteudo serie) {
+        series.add(serie);
+    }
 
 }
