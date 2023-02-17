@@ -39,6 +39,11 @@ public class Menu extends javax.swing.JFrame {
 
         btnListaSeries.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnListaSeries.setText(" Lista de Séries");
+        btnListaSeries.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaSeriesActionPerformed(evt);
+            }
+        });
 
         btnSair.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnSair.setText("Sair");
@@ -111,6 +116,12 @@ public class Menu extends javax.swing.JFrame {
         listafilmes.atualizarTabela();
         listafilmes.setVisible(true);
     }//GEN-LAST:event_btnListaFilmesActionPerformed
+
+    private void btnListaSeriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaSeriesActionPerformed
+        ListadeSeries listaseries = new ListadeSeries();
+        listaseries.atualizarTabela();
+        listaseries.setVisible(true);
+    }//GEN-LAST:event_btnListaSeriesActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

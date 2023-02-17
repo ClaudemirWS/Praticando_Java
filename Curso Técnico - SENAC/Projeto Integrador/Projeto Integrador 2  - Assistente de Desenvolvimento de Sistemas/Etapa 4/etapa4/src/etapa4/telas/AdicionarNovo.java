@@ -238,8 +238,8 @@ public class AdicionarNovo extends javax.swing.JFrame {
         return conteudo;
     }
 
-    //ATUALIZA OS ITENS NA TABELA
-    protected DefaultTableModel getModeloTabela() {
+    //ATUALIZA OS ITENS NA TABELA DE FILMES
+    protected DefaultTableModel getTabelaFilmes() {
 
         if (!CriaListas.ListarFilmes().isEmpty()) {
 
@@ -250,6 +250,32 @@ public class AdicionarNovo extends javax.swing.JFrame {
             for (int i = 0; i < CriaListas.ListarFilmes().size(); i++) {
 
                 atualizaConteudos = CriaListas.ListarFilmes().get(i);
+
+                String[] linha = {atualizaConteudos.getNome(), atualizaConteudos.getGenero(), atualizaConteudos.getStreaming()};
+
+                tableModel.addRow(linha);
+            }
+
+        } else {
+
+            tableModel = new DefaultTableModel(tableColumns, 0);
+        }
+
+        return tableModel;
+    }
+
+    //ATUALIZA OS ITENS NA TABELA DE SÉRIES
+    protected DefaultTableModel getTabelaSeries() {
+
+        if (!CriaListas.ListarSeries().isEmpty()) {
+
+            Conteudo atualizaConteudos;
+
+            tableModel = new DefaultTableModel(tableColumns, 0);
+
+            for (int i = 0; i < CriaListas.ListarSeries().size(); i++) {
+
+                atualizaConteudos = CriaListas.ListarSeries().get(i);
 
                 String[] linha = {atualizaConteudos.getNome(), atualizaConteudos.getGenero(), atualizaConteudos.getStreaming()};
 

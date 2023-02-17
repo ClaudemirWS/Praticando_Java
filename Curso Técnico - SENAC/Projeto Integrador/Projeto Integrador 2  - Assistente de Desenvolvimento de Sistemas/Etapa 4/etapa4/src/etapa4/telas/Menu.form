@@ -110,6 +110,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value=" Lista de S&#xe9;ries"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListaSeriesActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSair">
           <Properties>

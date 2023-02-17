@@ -53,7 +53,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tblFilmes">
+        <Component class="javax.swing.JTable" name="tblSeries">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="3" rowCount="0">
@@ -77,7 +77,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="36" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Lista de Filmes"/>
+        <Property name="text" type="java.lang.String" value="Lista de S&#xe9;ries"/>
       </Properties>
     </Component>
   </SubComponents>

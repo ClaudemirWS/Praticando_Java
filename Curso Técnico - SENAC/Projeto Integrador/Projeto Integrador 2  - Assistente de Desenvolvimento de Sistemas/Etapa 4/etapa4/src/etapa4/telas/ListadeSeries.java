@@ -2,9 +2,9 @@ package etapa4.telas;
 
 import etapa4.telas.AdicionarNovo;
 
-public class ListadeFilmes extends javax.swing.JFrame {
+public class ListadeSeries extends javax.swing.JFrame {
 
-    public ListadeFilmes() {
+    public ListadeSeries() {
         initComponents();
     }
 
@@ -13,12 +13,12 @@ public class ListadeFilmes extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblFilmes = new javax.swing.JTable();
+        tblSeries = new javax.swing.JTable();
         lblTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tblFilmes.setModel(new javax.swing.table.DefaultTableModel(
+        tblSeries.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -26,10 +26,10 @@ public class ListadeFilmes extends javax.swing.JFrame {
                 "Nome", "Genero", "Streaming"
             }
         ));
-        jScrollPane1.setViewportView(tblFilmes);
+        jScrollPane1.setViewportView(tblSeries);
 
         lblTitulo.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lblTitulo.setText("Lista de Filmes");
+        lblTitulo.setText("Lista de Séries");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,20 +69,21 @@ public class ListadeFilmes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListadeFilmes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListadeSeries.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListadeFilmes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListadeSeries.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListadeFilmes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListadeSeries.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListadeFilmes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListadeSeries.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListadeFilmes().setVisible(true);
+                new ListadeSeries().setVisible(true);
             }
         });
     }
@@ -90,7 +91,7 @@ public class ListadeFilmes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTable tblFilmes;
+    private javax.swing.JTable tblSeries;
     // End of variables declaration//GEN-END:variables
 
     //INICIA CLASSES QUE SERÃO UTILIZADAS
@@ -99,7 +100,7 @@ public class ListadeFilmes extends javax.swing.JFrame {
     //ATUALIZA OS ITENS NA TABELA
     public void atualizarTabela() {
 
-        tblFilmes.setModel(novoConteudo.getTabelaFilmes());
+        tblSeries.setModel(novoConteudo.getTabelaSeries());
     }
 
 }
