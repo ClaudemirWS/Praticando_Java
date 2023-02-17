@@ -1,6 +1,8 @@
 package etapa4.telas;
 
+import etapa4.Principal.CriaListas;
 import etapa4.telas.AdicionarNovo;
+import javax.swing.JOptionPane;
 
 public class ListadeSeries extends javax.swing.JFrame {
 
@@ -15,6 +17,8 @@ public class ListadeSeries extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSeries = new javax.swing.JTable();
         lblTitulo = new javax.swing.JLabel();
+        btnExcluir = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -31,15 +35,36 @@ public class ListadeSeries extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         lblTitulo.setText("Lista de Séries");
 
+        btnExcluir.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        btnSair.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btnSair.setText("Voltar");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTitulo))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(350, 350, 350)
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblTitulo)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -49,11 +74,23 @@ public class ListadeSeries extends javax.swing.JFrame {
                 .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnSair))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        excluirSerie(getposSerie());
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -89,6 +126,8 @@ public class ListadeSeries extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnSair;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tblSeries;
@@ -101,6 +140,45 @@ public class ListadeSeries extends javax.swing.JFrame {
     public void atualizarTabela() {
 
         tblSeries.setModel(novoConteudo.getTabelaSeries());
+    }
+    
+    private int getposSerie() {
+
+        //PEGA A POSIÇÃO NA LINHA SELECIONADA NA TABELA
+        int posConsulta = tblSeries.getSelectedRow();
+
+        //SE NÃO TIVER NENHUMA POSIÇÃO, EXIGE UMA
+        if (posConsulta == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma série.");
+        }
+        return posConsulta;
+    }
+    
+    //EXCLUI UMA LINHA POR VEZ
+    private void excluirSerie(int posFilme) {
+
+        if (posFilme >= 0) {
+
+            String[] options = {"Sim", "Não"};
+
+            int deletar = JOptionPane.showOptionDialog(
+                    rootPane,
+                    "Tem certeza que deseja excluir?",
+                    "Excluir série.",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
+
+            if (deletar == 0) {
+                CriaListas.ListarSeries().remove(posFilme);
+                atualizarTabela();
+            } else {
+                tblSeries.clearSelection();
+            }
+        }
     }
 
 }

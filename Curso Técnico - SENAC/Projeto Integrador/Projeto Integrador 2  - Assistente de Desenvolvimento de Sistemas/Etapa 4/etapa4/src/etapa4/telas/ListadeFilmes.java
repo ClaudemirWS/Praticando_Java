@@ -1,6 +1,8 @@
 package etapa4.telas;
 
 import etapa4.telas.AdicionarNovo;
+import etapa4.Principal.CriaListas;
+import javax.swing.JOptionPane;
 
 public class ListadeFilmes extends javax.swing.JFrame {
 
@@ -15,6 +17,8 @@ public class ListadeFilmes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFilmes = new javax.swing.JTable();
         lblTitulo = new javax.swing.JLabel();
+        btnExcluir = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -31,13 +35,33 @@ public class ListadeFilmes extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         lblTitulo.setText("Lista de Filmes");
 
+        btnExcluir.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        btnVoltar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTitulo))
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -49,11 +73,23 @@ public class ListadeFilmes extends javax.swing.JFrame {
                 .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnVoltar))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        excluirFilme(getposFilme());
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -88,6 +124,8 @@ public class ListadeFilmes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tblFilmes;
@@ -100,6 +138,46 @@ public class ListadeFilmes extends javax.swing.JFrame {
     public void atualizarTabela() {
 
         tblFilmes.setModel(novoConteudo.getTabelaFilmes());
+    }
+    
+    //PEGA A POSIÇÃO DA LINHA NA TABELA
+    private int getposFilme() {
+
+        //PEGA A POSIÇÃO NA LINHA SELECIONADA NA TABELA
+        int posConsulta = tblFilmes.getSelectedRow();
+
+        //SE NÃO TIVER NENHUMA POSIÇÃO, EXIGE UMA
+        if (posConsulta == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione um filme.");
+        }
+        return posConsulta;
+    }
+    
+    //EXCLUI UMA LINHA POR VEZ
+    private void excluirFilme(int posFilme) {
+
+        if (posFilme >= 0) {
+
+            String[] options = {"Sim", "Não"};
+
+            int deletar = JOptionPane.showOptionDialog(
+                    rootPane,
+                    "Tem certeza que deseja excluir?",
+                    "Excluir filme.",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
+
+            if (deletar == 0) {
+                CriaListas.ListarFilmes().remove(posFilme);
+                atualizarTabela();
+            } else {
+                tblFilmes.clearSelection();
+            }
+        }
     }
 
 }
