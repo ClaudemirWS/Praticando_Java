@@ -21,31 +21,49 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        Background.setBackground(new java.awt.Color(51, 51, 51));
+        Background.setForeground(new java.awt.Color(51, 51, 51));
+        Background.setToolTipText("Menu Principal");
+
+        btnAddNovo.setBackground(new java.awt.Color(102, 102, 102));
         btnAddNovo.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        btnAddNovo.setForeground(new java.awt.Color(255, 255, 255));
         btnAddNovo.setText("Adicionar Novo");
+        btnAddNovo.setToolTipText("Adiciona novo filme ou série");
+        btnAddNovo.setNextFocusableComponent(btnListaFilmes);
         btnAddNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddNovoActionPerformed(evt);
             }
         });
 
+        btnListaFilmes.setBackground(new java.awt.Color(102, 102, 102));
         btnListaFilmes.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btnListaFilmes.setForeground(new java.awt.Color(255, 255, 255));
         btnListaFilmes.setText("Lista de Filmes");
+        btnListaFilmes.setToolTipText("Ver lista de filmes");
+        btnListaFilmes.setNextFocusableComponent(btnListaSeries);
         btnListaFilmes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListaFilmesActionPerformed(evt);
             }
         });
 
+        btnListaSeries.setBackground(new java.awt.Color(102, 102, 102));
         btnListaSeries.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btnListaSeries.setForeground(new java.awt.Color(255, 255, 255));
         btnListaSeries.setText(" Lista de Séries");
+        btnListaSeries.setToolTipText("Ver lista de séries");
+        btnListaSeries.setNextFocusableComponent(btnSair);
         btnListaSeries.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListaSeriesActionPerformed(evt);
             }
         });
 
+        btnSair.setBackground(new java.awt.Color(102, 102, 102));
         btnSair.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btnSair.setForeground(new java.awt.Color(255, 255, 255));
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,11 +116,14 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        Background.getAccessibleContext().setAccessibleName("Menu");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         dispose();
+        System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnAddNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNovoActionPerformed
