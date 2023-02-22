@@ -16,7 +16,7 @@ public class FormRelatorioFuncionarios extends javax.swing.JFrame {
         FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
         //Pegar os dados dos funcionarios da lista e colocar dentro da tabela
         List<Funcionario> listaFuncionarios = funcionarioDAO.getFuncionarios();
-
+        System.out.println(funcionarioDAO.getFuncionarios());
         //Criar uma variavel do tipo DefaultTableModel, pois é com esse tipo que conseguimos inserir dinamicamente linhas dentro da JTable        
         DefaultTableModel tabelaFuncionarios = (DefaultTableModel) tblFuncionarios.getModel();
         //permite clicar nas colunas para ordenar por ordem crescente ou decrescente

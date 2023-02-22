@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Claudemir
@@ -15,15 +17,17 @@ public class FilmeDB {
     PreparedStatement st;
     ResultSet rs;
 
-    public boolean conectar() {
+    public FilmeDB() {
+        this.conn = this.conectar();
+    }
+
+    public Connection conectar() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            //ALTERAR A SENHA PARA A UTILIZADA NO WORKBENCH
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/atividade1", "root", "admin");
-            return true;
-        } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println("Erro ao conectar: " + ex.getMessage());
-            return false;
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/atividade1", "root", "admin");
+            return conn;
+        } catch (Exception e) {
+            System.out.println("Erro ao conectar: " + e.getMessage());
+            return null;
         }
     }
 
@@ -39,28 +43,6 @@ public class FilmeDB {
         } catch (SQLException ex) {
             System.out.println("Erro ao conectar: " + ex.getMessage());
             return ex.getErrorCode();
-        }
-    }
-
-    public Filme consultar(String nome) {
-
-        try {
-            Filme filme = new Filme();
-            st = conn.prepareStatement("SELECT * FROM filmes WHERE nome = ?");
-            st.setString(1, nome);
-            rs = st.executeQuery();
-            //verificar se a consulta encontrou o funcionário com a matrícula informada
-            if (rs.next()) { // se encontrou o funcionário, vamos carregar os dados
-                filme.setNome(rs.getString("nome"));
-                filme.setData(rs.getString("datalancamento"));
-                filme.setCategoria(rs.getString("categoria"));
-                return filme;
-            } else {
-                return null;
-            }
-        } catch (SQLException ex) {
-            System.out.println("Erro ao conectar: " + ex.getMessage());
-            return null;
         }
     }
 
@@ -97,6 +79,25 @@ public class FilmeDB {
         } catch (SQLException ex) {
             //pode-se deixar vazio para evitar uma mensagem de erro desnecessária ao usuário
         }
+    }
+
+    public List<Filme> getFilmes() {
+        try {
+            st = this.conn.prepareStatement("SELECT nome, datalancamento, categoria FROM filmes");
+            rs = st.executeQuery();
+            List<Filme> lista = new ArrayList<>();
+            while (rs.next()) {
+                Filme filme = new Filme();
+                filme.setNome(rs.getString("nome"));
+                filme.setData(rs.getString("datalancamento"));
+                filme.setCategoria(rs.getString("categoria"));
+                lista.add(filme);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            return null;
+        }
+
     }
 
 }

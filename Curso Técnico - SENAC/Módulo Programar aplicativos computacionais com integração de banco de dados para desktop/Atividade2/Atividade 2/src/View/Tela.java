@@ -164,18 +164,14 @@ public class Tela extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Filme filme = new Filme();
         FilmeDB db = new FilmeDB();
-        boolean status;
         int resposta;
 
         filme.setNome(txtNome.getText());
         filme.setData(txtData.getText());
         filme.setCategoria(txtCategoria.getText());
-        status = db.conectar();
-        if (status == false) {
-            JOptionPane.showMessageDialog(null, "Erro de conexão.");
-        } else {
-            resposta = db.salvar(filme);
-            if (resposta == 1) {
+        resposta = db.salvar(filme);
+        switch (resposta) {
+            case 1 -> {
                 JOptionPane.showMessageDialog(null, "Dados incluidos com sucesso.");
                 //limpar os campos
                 txtNome.setText("");
@@ -183,13 +179,12 @@ public class Tela extends javax.swing.JFrame {
                 txtCategoria.setText("");
                 //recomeçar inserção de dados do inicio
                 txtNome.requestFocus();
-            } else if (resposta == 1062) {
-                JOptionPane.showMessageDialog(null, "Filme já cadastrado.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro ao tentar inserir dados.");
             }
-            db.desconectar();
+            case 1062 -> JOptionPane.showMessageDialog(null, "Filme já cadastrado.");
+            default -> JOptionPane.showMessageDialog(null, "Erro ao tentar inserir dados.");
         }
+        db.desconectar();
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -205,7 +200,7 @@ public class Tela extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        Filme filme = new Filme();
+        /*Filme filme = new Filme();
         FilmeDB db = new FilmeDB();
         boolean status;
         int resposta;
@@ -236,11 +231,11 @@ public class Tela extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar atualizar os dados.");
             }
             db.desconectar();
-        }
+        }*/
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        String nome;
+        /*String nome;
         nome = JOptionPane.showInputDialog("Digite o nome do filme:");
         FilmeDB db = new FilmeDB();
         boolean status = db.conectar();
@@ -260,11 +255,13 @@ public class Tela extends javax.swing.JFrame {
             db.desconectar();
         } else {
             JOptionPane.showMessageDialog(null, "Erro de conexão");
-        }
+        }*/
+        Consulta consulta = new Consulta();
+        consulta.setVisible(true);
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        FilmeDB db = new FilmeDB();
+        /*FilmeDB db = new FilmeDB();
         boolean status = db.conectar();
         if (status == false) {
             JOptionPane.showMessageDialog(null, "Erro de conexão");
@@ -284,7 +281,7 @@ public class Tela extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Erro na exclusão do filme.");
             }
             db.desconectar();
-        }
+        }*/
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     public static void main(String args[]) {
