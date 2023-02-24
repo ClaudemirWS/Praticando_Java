@@ -18,7 +18,7 @@ public class FilmeDB {
     ResultSet rs;
 
     public FilmeDB() {
-        this.conn = this.conectar();
+        this.conn = conectar();
     }
 
     public Connection conectar() {

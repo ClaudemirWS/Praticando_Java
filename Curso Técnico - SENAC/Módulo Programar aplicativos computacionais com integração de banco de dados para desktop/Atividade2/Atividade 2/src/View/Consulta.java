@@ -3,6 +3,7 @@ package View;
 import Dados.Filme;
 import Dados.FilmeDB;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -11,7 +12,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class Consulta extends javax.swing.JFrame {
 
-    private void preencherTabela() {   
+    private void preencherTabela() {
         FilmeDB db = new FilmeDB();
         //Pegar os dados dos funcionarios da lista e colocar dentro da tabela
         List<Filme> listaFilmes = db.getFilmes();
@@ -133,6 +134,19 @@ public class Consulta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        FilmeDB db = new FilmeDB();
+
+        if (getFilmeSelecionado() != null) {
+            int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza?");
+            if (confirma == 0) {
+                JOptionPane.showMessageDialog(null, "Filme excluído com sucesso.");
+                db.excluir(getFilmeSelecionado());
+                preencherTabela();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Filme não encontrado.");
+        }
+
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -184,4 +198,20 @@ public class Consulta extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tblFilmes;
     // End of variables declaration//GEN-END:variables
+
+    //PEGA A POSIÇÃO DA LINHA NA TABELA
+    private String getFilmeSelecionado() {
+
+        //PEGA A POSIÇÃO NA LINHA SELECIONADA NA TABELA
+        int linha = tblFilmes.getSelectedRow();
+
+        //PEGA O NOME DO FILME A PARTIR DA LINHA E COLUNA
+        String nomeFilme = String.valueOf(tblFilmes.getValueAt(linha, 0));
+
+        //SE NÃO TIVER NENHUMA POSIÇÃO, EXIGE UMA
+        if (linha == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione um filme.");
+        }
+        return nomeFilme;
+    }
 }
