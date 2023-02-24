@@ -28,8 +28,6 @@ public class Tela extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
-        btnAtualizar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,24 +72,6 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
-        btnAtualizar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnAtualizar.setText("Atualizar");
-        btnAtualizar.setEnabled(false);
-        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtualizarActionPerformed(evt);
-            }
-        });
-
-        btnExcluir.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnExcluir.setText("Excluir");
-        btnExcluir.setEnabled(false);
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,35 +79,31 @@ public class Tela extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(lblCenaflix))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNome)
                             .addComponent(lblData)
                             .addComponent(lblCategoria))
-                        .addGap(33, 33, 33)
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnCadastrar)
-                        .addGap(12, 12, 12)
-                        .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addComponent(lblCenaflix)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(181, 181, 181)
-                .addComponent(lxlCadastroFilme)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(181, 181, 181)
+                        .addComponent(lxlCadastroFilme)))
+                .addContainerGap(85, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,14 +124,12 @@ public class Tela extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCategoria)
                     .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnLimpar)
-                    .addComponent(btnConsultar)
-                    .addComponent(btnExcluir)
-                    .addComponent(btnAtualizar))
-                .addGap(29, 29, 29))
+                    .addComponent(btnConsultar))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -192,97 +166,14 @@ public class Tela extends javax.swing.JFrame {
         txtNome.setText("");
         txtData.setText("");
         txtCategoria.setText("");
-        //desabilita botões
-        btnExcluir.setEnabled(false);
-        btnAtualizar.setEnabled(false);
         //recomeçar inserção de dados do inicio
         txtNome.requestFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
 
-    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        /*Filme filme = new Filme();
-        FilmeDB db = new FilmeDB();
-        boolean status;
-        int resposta;
-
-        filme.setNome(txtNome.getText());
-        filme.setData(txtData.getText());
-        filme.setCategoria(txtCategoria.getText());
-        status = db.conectar();
-        if (status == false) {
-            JOptionPane.showMessageDialog(null, "Erro de conexão");
-        } else {
-            resposta = db.atualizar(filme);
-            System.out.println(filme.getNome());
-            if (resposta == 1) {
-                JOptionPane.showMessageDialog(null, "Filme atualizado com sucesso.");
-                //desabilita botões
-                btnExcluir.setEnabled(false);
-                btnAtualizar.setEnabled(false);
-                //limpar os campos
-                txtNome.setText("");
-                txtData.setText("");
-                txtCategoria.setText("");
-                //posicionar o cursor para um próximo
-                txtNome.requestFocus();
-            } else if (resposta == 1062) {
-                JOptionPane.showMessageDialog(null, "Filme já foi cadastrado.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro ao tentar atualizar os dados.");
-            }
-            db.desconectar();
-        }*/
-    }//GEN-LAST:event_btnAtualizarActionPerformed
-
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        /*String nome;
-        nome = JOptionPane.showInputDialog("Digite o nome do filme:");
-        FilmeDB db = new FilmeDB();
-        boolean status = db.conectar();
-        if (status == true) {
-            Filme filme = db.consultar(nome);
-            System.out.println(db.consultar(nome));
-            if (filme == null) {
-                JOptionPane.showMessageDialog(null, "Filme não encontrado");
-            } else {
-                txtNome.setText(filme.getNome());
-                txtData.setText(filme.getData());
-                txtCategoria.setText(String.valueOf(filme.getCategoria()));
-                //habilitar botões
-                btnExcluir.setEnabled(true);
-                btnAtualizar.setEnabled(true);
-            }
-            db.desconectar();
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro de conexão");
-        }*/
         Consulta consulta = new Consulta();
         consulta.setVisible(true);
     }//GEN-LAST:event_btnConsultarActionPerformed
-
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        /*FilmeDB db = new FilmeDB();
-        boolean status = db.conectar();
-        if (status == false) {
-            JOptionPane.showMessageDialog(null, "Erro de conexão");
-        } else {
-            status = db.excluir(txtNome.getText());
-            if (status == true) {
-                //int confirma = JOptionPane.showConfirmDialog(null,"Tem certeza?");
-                JOptionPane.showMessageDialog(null, "Filme excluído com sucesso.");
-                txtNome.setText("");
-                txtData.setText("");
-                txtCategoria.setText("");
-                txtNome.requestFocus();
-                //desabilita botões
-                btnExcluir.setEnabled(false);
-                btnAtualizar.setEnabled(false);
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro na exclusão do filme.");
-            }
-            db.desconectar();
-        }*/
-    }//GEN-LAST:event_btnExcluirActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -317,10 +208,8 @@ public class Tela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnConsultar;
-    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblCenaflix;

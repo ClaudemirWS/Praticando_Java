@@ -16,21 +16,21 @@ public class Consulta extends javax.swing.JFrame {
         FilmeDB db = new FilmeDB();
         //Pegar os dados dos funcionarios da lista e colocar dentro da tabela
         List<Filme> listaFilmes = db.getFilmes();
-        System.out.println(db.getFilmes());
         //Criar uma variavel do tipo DefaultTableModel, pois é com esse tipo que conseguimos inserir dinamicamente linhas dentro da JTable        
-        DefaultTableModel tabelaFuncionarios = (DefaultTableModel) tblFilmes.getModel();
+        DefaultTableModel tabelaFilmes = (DefaultTableModel) tblFilmes.getModel();
         //permite clicar nas colunas para ordenar por ordem crescente ou decrescente
-        tblFilmes.setRowSorter(new TableRowSorter(tabelaFuncionarios));
+        tblFilmes.setRowSorter(new TableRowSorter(tabelaFilmes));
         //Limpar a tabela para preencher com os novos dados
-        tabelaFuncionarios.setNumRows(0);
+        tabelaFilmes.setNumRows(0);
         //Percorrer a lista de filmes ec inserir na tabela
         for (Filme f : listaFilmes) {
             Object[] obj = new Object[]{
+                f.getId(),
                 f.getNome(),
                 f.getData(),
                 f.getCategoria()};
             //colocar os dados da variavel obj dentro da tabela
-            tabelaFuncionarios.addRow(obj);
+            tabelaFilmes.addRow(obj);
         }
     }
 
@@ -62,7 +62,7 @@ public class Consulta extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Data de lançamento", "Categoria"
+                "Id", "Nome", "Data de lançamento", "Categoria"
             }
         ));
         jScrollPane1.setViewportView(tblFilmes);
@@ -146,12 +146,19 @@ public class Consulta extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Filme não encontrado.");
         }
-
-
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        FilmeDB db = new FilmeDB();
 
+        if (getFilmeSelecionado() != null) {
+            //JOptionPane.showMessageDialog(null, "Filme atualizado com sucesso.");
+            Filme filme = db.getFilme(getFilmeSelecionado());
+            db.atualizar(filme);            
+        } else {
+            JOptionPane.showMessageDialog(null, "Filme não encontrado.");
+        }
+        preencherTabela();
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -199,19 +206,19 @@ public class Consulta extends javax.swing.JFrame {
     private javax.swing.JTable tblFilmes;
     // End of variables declaration//GEN-END:variables
 
-    //PEGA A POSIÇÃO DA LINHA NA TABELA
+    //PEGA A POSIÇÃO DO FILME NA TABELA
     private String getFilmeSelecionado() {
 
         //PEGA A POSIÇÃO NA LINHA SELECIONADA NA TABELA
         int linha = tblFilmes.getSelectedRow();
 
-        //PEGA O NOME DO FILME A PARTIR DA LINHA E COLUNA
-        String nomeFilme = String.valueOf(tblFilmes.getValueAt(linha, 0));
+        //PEGA O ID DO FILME A PARTIR DA LINHA E COLUNA
+        String idFilme = String.valueOf(tblFilmes.getValueAt(linha, 0));
 
         //SE NÃO TIVER NENHUMA POSIÇÃO, EXIGE UMA
         if (linha == -1) {
             JOptionPane.showMessageDialog(rootPane, "Selecione um filme.");
         }
-        return nomeFilme;
+        return idFilme;
     }
 }

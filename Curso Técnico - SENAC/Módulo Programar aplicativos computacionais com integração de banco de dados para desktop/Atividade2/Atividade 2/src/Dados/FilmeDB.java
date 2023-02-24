@@ -46,10 +46,10 @@ public class FilmeDB {
         }
     }
 
-    public boolean excluir(String nome) {
+    public boolean excluir(String id) {
         try {
-            st = conn.prepareStatement("DELETE FROM filmes WHERE nome = ?");
-            st.setString(1, nome);
+            st = conn.prepareStatement("DELETE FROM filmes WHERE id = ?");
+            st.setString(1, id);
             st.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -60,11 +60,11 @@ public class FilmeDB {
     public int atualizar(Filme filme) {
         int status;
         try {
-            st = conn.prepareStatement("UPDATE filmes SET nome = ?, datalancamento = ?, categoria = ? where nome = ?");
+            st = conn.prepareStatement("UPDATE filmes SET nome = ?, datalancamento = ?, categoria = ? where id = ?");
             st.setString(1, filme.getNome());
             st.setString(2, filme.getData());
             st.setString(3, filme.getCategoria());
-            st.setString(4, filme.getNome());
+            st.setString(4, filme.getId());
             status = st.executeUpdate();
             return status; //retornar 1
         } catch (SQLException ex) {
@@ -83,11 +83,12 @@ public class FilmeDB {
 
     public List<Filme> getFilmes() {
         try {
-            st = this.conn.prepareStatement("SELECT nome, datalancamento, categoria FROM filmes");
+            st = this.conn.prepareStatement("SELECT id, nome, datalancamento, categoria FROM filmes");
             rs = st.executeQuery();
             List<Filme> lista = new ArrayList<>();
             while (rs.next()) {
                 Filme filme = new Filme();
+                filme.setId(rs.getString("id"));
                 filme.setNome(rs.getString("nome"));
                 filme.setData(rs.getString("datalancamento"));
                 filme.setCategoria(rs.getString("categoria"));
@@ -98,6 +99,39 @@ public class FilmeDB {
             return null;
         }
 
+    }
+
+    public Filme getFilme(String id) {
+
+        try {
+            st = this.conn.prepareStatement("SELECT id, nome, datalancamento, categoria FROM filmes WHERE id = ?",
+                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            //Passar o parâmetro da consulta
+            st.setString(1, id);
+
+            //Método para poder executar o SELECT.
+            //Os resultados obtidos pela consulta serão armazenados na variavel ResultSet
+            rs = st.executeQuery();
+            rs.next();
+
+            Filme filme = new Filme();
+
+            rs.first(); //irá posicionar o ResultSet na primeira posição
+
+            //Atribuir os dados do "rs" para dentro do objeto filme
+            filme.setId(rs.getString("id"));
+            filme.setNome(rs.getString("nome"));
+            filme.setData(rs.getString("datalancamento"));
+            filme.setCategoria(rs.getString("categoria"));
+
+            //retornar o objeto filme
+            return filme;
+
+            //tratando o erro, caso ele ocorra
+        } catch (Exception ex) {
+            System.out.println("Erro: " + ex.getMessage());
+            return null;
+        }
     }
 
 }
