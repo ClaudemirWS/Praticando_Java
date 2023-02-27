@@ -12,28 +12,6 @@ import javax.swing.table.TableRowSorter;
  */
 public class Consulta extends javax.swing.JFrame {
 
-    private void preencherTabela() {
-        FilmeDB db = new FilmeDB();
-        //Pegar os dados dos funcionarios da lista e colocar dentro da tabela
-        List<Filme> listaFilmes = db.getFilmes();
-        //Criar uma variavel do tipo DefaultTableModel, pois é com esse tipo que conseguimos inserir dinamicamente linhas dentro da JTable        
-        DefaultTableModel tabelaFilmes = (DefaultTableModel) tblFilmes.getModel();
-        //permite clicar nas colunas para ordenar por ordem crescente ou decrescente
-        tblFilmes.setRowSorter(new TableRowSorter(tabelaFilmes));
-        //Limpar a tabela para preencher com os novos dados
-        tabelaFilmes.setNumRows(0);
-        //Percorrer a lista de filmes ec inserir na tabela
-        for (Filme f : listaFilmes) {
-            Object[] obj = new Object[]{
-                f.getId(),
-                f.getNome(),
-                f.getData(),
-                f.getCategoria()};
-            //colocar os dados da variavel obj dentro da tabela
-            tabelaFilmes.addRow(obj);
-        }
-    }
-
     public Consulta() {
         initComponents();
         preencherTabela();
@@ -105,14 +83,14 @@ public class Consulta extends javax.swing.JFrame {
                         .addComponent(lblTitulo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAtualizar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnExcluir)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnVoltar))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -136,29 +114,31 @@ public class Consulta extends javax.swing.JFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         FilmeDB db = new FilmeDB();
 
-        if (getFilmeSelecionado() != null) {
-            int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza?");
-            if (confirma == 0) {
-                JOptionPane.showMessageDialog(null, "Filme excluído com sucesso.");
-                db.excluir(getFilmeSelecionado());
-                preencherTabela();
+        try {
+            if (getFilmeSelecionado() != null) {
+                int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza?");
+                if (confirma == 0) {
+                    JOptionPane.showMessageDialog(null, "Filme excluído com sucesso.");
+                    db.excluir(getFilmeSelecionado());
+                    preencherTabela();
+                }
             }
-        } else {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Filme não encontrado.");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        FilmeDB db = new FilmeDB();
-
-        if (getFilmeSelecionado() != null) {
-            //JOptionPane.showMessageDialog(null, "Filme atualizado com sucesso.");
-            Filme filme = db.getFilme(getFilmeSelecionado());
-            db.atualizar(filme);            
-        } else {
+        try {
+            if (getFilmeSelecionado() != null) {
+                Atualizar telaAtualiza = new Atualizar();
+                telaAtualiza.setVisible(true);
+                telaAtualiza.preencheCampos(getFilmeSelecionado());
+                dispose();
+            }
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Filme não encontrado.");
         }
-        preencherTabela();
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -220,5 +200,27 @@ public class Consulta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Selecione um filme.");
         }
         return idFilme;
+    }
+
+    public void preencherTabela() {
+        FilmeDB db = new FilmeDB();
+        //Pegar os dados dos funcionarios da lista e colocar dentro da tabela
+        List<Filme> listaFilmes = db.getFilmes();
+        //Criar uma variavel do tipo DefaultTableModel, pois é com esse tipo que conseguimos inserir dinamicamente linhas dentro da JTable        
+        DefaultTableModel tabelaFilmes = (DefaultTableModel) tblFilmes.getModel();
+        //permite clicar nas colunas para ordenar por ordem crescente ou decrescente
+        tblFilmes.setRowSorter(new TableRowSorter(tabelaFilmes));
+        //Limpar a tabela para preencher com os novos dados
+        tabelaFilmes.setNumRows(0);
+        //Percorrer a lista de filmes ec inserir na tabela
+        for (Filme f : listaFilmes) {
+            Object[] obj = new Object[]{
+                f.getId(),
+                f.getNome(),
+                f.getData(),
+                f.getCategoria()};
+            //colocar os dados da variavel obj dentro da tabela
+            tabelaFilmes.addRow(obj);
+        }
     }
 }
