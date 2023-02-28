@@ -106,7 +106,7 @@
     <Component class="javax.swing.JLabel" name="lxlCadastroFilme">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="24" style="0"/>
+          <Font name="Dialog" size="24" style="2"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cadastro de Filme"/>
       </Properties>

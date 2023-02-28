@@ -34,7 +34,7 @@ public class Tela extends javax.swing.JFrame {
         lblCenaflix.setFont(new java.awt.Font("DialogInput", 1, 36)); // NOI18N
         lblCenaflix.setText("CENAFLIX");
 
-        lxlCadastroFilme.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        lxlCadastroFilme.setFont(new java.awt.Font("Dialog", 2, 24)); // NOI18N
         lxlCadastroFilme.setText("Cadastro de Filme");
 
         lblNome.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N

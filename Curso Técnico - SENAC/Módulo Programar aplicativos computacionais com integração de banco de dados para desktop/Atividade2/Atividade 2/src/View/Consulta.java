@@ -12,6 +12,8 @@ import javax.swing.table.TableRowSorter;
  */
 public class Consulta extends javax.swing.JFrame {
 
+    FilmeDB db = new FilmeDB();
+
     public Consulta() {
         initComponents();
         preencherTabela();
@@ -32,6 +34,8 @@ public class Consulta extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
+        lblCategoria = new javax.swing.JLabel();
+        txtCategoria = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -45,7 +49,7 @@ public class Consulta extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblFilmes);
 
-        lblTitulo.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Dialog", 2, 24)); // NOI18N
         lblTitulo.setText("Lista de Filmes - Cenaflix");
 
         btnExcluir.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -72,15 +76,21 @@ public class Consulta extends javax.swing.JFrame {
             }
         });
 
+        lblCategoria.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblCategoria.setText("Categoria");
+
+        txtCategoria.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtCategoriaCaretUpdate(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(lblTitulo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -90,7 +100,14 @@ public class Consulta extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCategoria)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(lblTitulo)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -98,14 +115,18 @@ public class Consulta extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCategoria)
+                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAtualizar)
                     .addComponent(btnExcluir)
                     .addComponent(btnVoltar))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -145,6 +166,10 @@ public class Consulta extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
+    private void txtCategoriaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCategoriaCaretUpdate
+        pesquisaCategoria();
+    }//GEN-LAST:event_txtCategoriaCaretUpdate
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -182,8 +207,10 @@ public class Consulta extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tblFilmes;
+    private javax.swing.JTextField txtCategoria;
     // End of variables declaration//GEN-END:variables
 
     //PEGA A POSIÇÃO DO FILME NA TABELA
@@ -203,7 +230,6 @@ public class Consulta extends javax.swing.JFrame {
     }
 
     public void preencherTabela() {
-        FilmeDB db = new FilmeDB();
         //Pegar os dados dos funcionarios da lista e colocar dentro da tabela
         List<Filme> listaFilmes = db.getFilmes();
         //Criar uma variavel do tipo DefaultTableModel, pois é com esse tipo que conseguimos inserir dinamicamente linhas dentro da JTable        
@@ -221,6 +247,28 @@ public class Consulta extends javax.swing.JFrame {
                 f.getCategoria()};
             //colocar os dados da variavel obj dentro da tabela
             tabelaFilmes.addRow(obj);
+        }
+    }
+
+    private void pesquisaCategoria() {
+
+        String nomeCategoria = txtCategoria.getText();
+        List<Filme> listaFilmes = db.getFilmeCategoria(nomeCategoria);
+
+        DefaultTableModel tabelaEmpresas = (DefaultTableModel) tblFilmes.getModel();
+        //Limpar a tabela para preencher com os novos dados
+        tabelaEmpresas.setNumRows(0);
+
+        tblFilmes.setRowSorter(new TableRowSorter(tabelaEmpresas));
+
+        for (Filme f : listaFilmes) { //em cada volta do laço for, o mesmo adiciona uma dado(empresa) dentro do objeto c
+            Object[] obj = new Object[]{
+                f.getId(),
+                f.getNome(),
+                f.getData(),
+                f.getCategoria()
+            };
+            tabelaEmpresas.addRow(obj);
         }
     }
 }

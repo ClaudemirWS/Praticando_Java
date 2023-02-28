@@ -105,7 +105,7 @@ public class FilmeDB {
 
         try {
             st = this.conn.prepareStatement("SELECT id, nome, datalancamento, categoria FROM filmes WHERE id = ?",
-                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             //Passar o parâmetro da consulta
             st.setString(1, id);
 
@@ -130,6 +130,27 @@ public class FilmeDB {
             //tratando o erro, caso ele ocorra
         } catch (Exception ex) {
             System.out.println("Erro: " + ex.getMessage());
+            return null;
+        }
+    }
+
+    public List<Filme> getFilmeCategoria(String categoria) {
+
+        try {
+            st = this.conn.prepareStatement("SELECT id, nome, datalancamento, categoria FROM filmes WHERE categoria LIKE ?");
+            st.setString(1, "%" + categoria + "%");
+            rs = st.executeQuery();
+            List<Filme> lista = new ArrayList<>();
+            while (rs.next()) {
+                Filme filme = new Filme();
+                filme.setId(rs.getString("id"));
+                filme.setNome(rs.getString("nome"));
+                filme.setData(rs.getString("datalancamento"));
+                filme.setCategoria(rs.getString("categoria"));
+                lista.add(filme);
+            }
+            return lista;
+        } catch (SQLException ex) {
             return null;
         }
     }
