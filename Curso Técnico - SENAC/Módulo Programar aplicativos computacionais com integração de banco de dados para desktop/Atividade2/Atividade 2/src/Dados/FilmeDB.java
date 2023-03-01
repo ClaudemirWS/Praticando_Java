@@ -21,9 +21,10 @@ public class FilmeDB {
         this.conn = conectar();
     }
 
+    //Faz a conexão com o banco de dados
     public Connection conectar() {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/atividade1", "root", "admin");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/atividade2", "root", "admin");
             return conn;
         } catch (Exception e) {
             System.out.println("Erro ao conectar: " + e.getMessage());
@@ -31,6 +32,7 @@ public class FilmeDB {
         }
     }
 
+    //Salva um filme
     public int salvar(Filme filme) {
         int status;
         try {
@@ -46,6 +48,7 @@ public class FilmeDB {
         }
     }
 
+    //Exclui um filme
     public boolean excluir(String id) {
         try {
             st = conn.prepareStatement("DELETE FROM filmes WHERE id = ?");
@@ -57,6 +60,7 @@ public class FilmeDB {
         }
     }
 
+    //Atualiza os dados de um filme
     public int atualizar(Filme filme) {
         int status;
         try {
@@ -73,6 +77,7 @@ public class FilmeDB {
         }
     }
 
+    //Desconecta do banco de dados
     public void desconectar() {
         try {
             conn.close();
@@ -81,6 +86,7 @@ public class FilmeDB {
         }
     }
 
+    //Pega toda a lista de filmes
     public List<Filme> getFilmes() {
         try {
             st = this.conn.prepareStatement("SELECT id, nome, datalancamento, categoria FROM filmes");
@@ -101,6 +107,7 @@ public class FilmeDB {
 
     }
 
+    //Pega um filme especifico a partir do ID
     public Filme getFilme(String id) {
 
         try {
@@ -134,6 +141,7 @@ public class FilmeDB {
         }
     }
 
+    //Pega a lista de filmes com base na categoria
     public List<Filme> getFilmeCategoria(String categoria) {
 
         try {

@@ -21,9 +21,9 @@ SET time_zone = "+00:00";
 -- Banco de dados: `cenaflix`
 --
 
-CREATE DATABASE atividade1;
+CREATE DATABASE atividade2;
 
-USE atividade1;
+USE atividade2;
 
 -- --------------------------------------------------------
 
@@ -62,3 +62,9 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+INSERT INTO filmes(nome,datalancamento,categoria) VALUES ('Shazam! Fury of the gods','2023-03-16','Ação');
+INSERT INTO filmes(nome,datalancamento,categoria) VALUES ('The Flash','2023-06-15','Ação');
+INSERT INTO filmes(nome,datalancamento,categoria) VALUES ('Aquaman and the Lost Kingdom','2023-03-17','Ação');
+INSERT INTO filmes(nome,datalancamento,categoria) VALUES ('Indiana Jones and the Dial of Destiny','2023-06-30','Aventura');
+INSERT INTO filmes(nome,datalancamento,categoria) VALUES ('The Super Mario Bros. Movie','2023-06-30','Animação');

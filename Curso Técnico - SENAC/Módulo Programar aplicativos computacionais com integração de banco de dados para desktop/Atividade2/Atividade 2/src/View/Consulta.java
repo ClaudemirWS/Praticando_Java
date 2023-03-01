@@ -229,27 +229,28 @@ public class Consulta extends javax.swing.JFrame {
         return idFilme;
     }
 
+    //PREENCHE TODAS AS LINHAS DA TABELA
     public void preencherTabela() {
-        //Pegar os dados dos funcionarios da lista e colocar dentro da tabela
+
         List<Filme> listaFilmes = db.getFilmes();
-        //Criar uma variavel do tipo DefaultTableModel, pois é com esse tipo que conseguimos inserir dinamicamente linhas dentro da JTable        
+                
         DefaultTableModel tabelaFilmes = (DefaultTableModel) tblFilmes.getModel();
         //permite clicar nas colunas para ordenar por ordem crescente ou decrescente
         tblFilmes.setRowSorter(new TableRowSorter(tabelaFilmes));
         //Limpar a tabela para preencher com os novos dados
         tabelaFilmes.setNumRows(0);
-        //Percorrer a lista de filmes ec inserir na tabela
-        for (Filme f : listaFilmes) {
+
+        for (Filme f : listaFilmes) { //em cada volta do laço for, o mesmo adiciona uma filme
             Object[] obj = new Object[]{
                 f.getId(),
                 f.getNome(),
                 f.getData(),
                 f.getCategoria()};
-            //colocar os dados da variavel obj dentro da tabela
             tabelaFilmes.addRow(obj);
         }
     }
 
+    //PREENCHE AS LINHAS NA TABELA DE ACORDO COM A CATEGORIA
     private void pesquisaCategoria() {
 
         String nomeCategoria = txtCategoria.getText();
@@ -258,10 +259,10 @@ public class Consulta extends javax.swing.JFrame {
         DefaultTableModel tabelaEmpresas = (DefaultTableModel) tblFilmes.getModel();
         //Limpar a tabela para preencher com os novos dados
         tabelaEmpresas.setNumRows(0);
-
+        //permite clicar nas colunas para ordenar por ordem crescente ou decrescente
         tblFilmes.setRowSorter(new TableRowSorter(tabelaEmpresas));
 
-        for (Filme f : listaFilmes) { //em cada volta do laço for, o mesmo adiciona uma dado(empresa) dentro do objeto c
+        for (Filme f : listaFilmes) { //em cada volta do laço for, o mesmo adiciona uma filme
             Object[] obj = new Object[]{
                 f.getId(),
                 f.getNome(),

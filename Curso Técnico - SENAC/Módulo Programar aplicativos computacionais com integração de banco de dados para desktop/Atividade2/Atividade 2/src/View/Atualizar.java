@@ -193,6 +193,7 @@ public class Atualizar extends javax.swing.JFrame{
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 
+    //PREENCHE OS CAMPOS COM OS DADOS DO FILME QUE PODERÁ SER EDITADO
     public void preencheCampos(String id) {
         this.id = id;
         //PREENCHE OS CAMPOS COM AS INFORMAÇÕES DO FILME
