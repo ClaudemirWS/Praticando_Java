@@ -133,7 +133,6 @@ public class Consulta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        FilmeDB db = new FilmeDB();
 
         try {
             if (getFilmeSelecionado() != null) {
