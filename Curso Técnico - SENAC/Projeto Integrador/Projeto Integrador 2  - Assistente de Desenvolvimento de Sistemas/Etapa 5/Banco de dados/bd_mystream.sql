@@ -24,7 +24,6 @@ CREATE TABLE series (
 );
 
 INSERT INTO usuario (nome,login,senha) VALUES ('Claudemir', 'claudemir@mystream', '202cb962ac59075b964b07152d234b70');
-INSERT INTO usuario (nome,login,senha) VALUES ('Luthiano', 'luthiano@mystream', '202cb962ac59075b964b07152d234b70');
 
 INSERT INTO filmes(nome,genero,streaming) VALUES ('Shazam! Fury of the gods','Ação','HBO MAX');
 INSERT INTO filmes(nome,genero,streaming) VALUES ('The Flash','Ação','HBO MAX');

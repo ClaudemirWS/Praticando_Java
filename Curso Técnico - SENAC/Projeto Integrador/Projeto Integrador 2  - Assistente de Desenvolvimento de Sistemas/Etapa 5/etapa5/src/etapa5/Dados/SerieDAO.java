@@ -1,5 +1,6 @@
 package etapa5.Dados;
 
+import etapa5.Principal.Conteudo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 /**
  * @author Claudemir
  */
-public class SerieDAO extends ConteudoDAO {
+public class SerieDAO extends ConexaoDAO {
 
     //Salva uma série
     public int salvarSerie(Conteudo conteudo) {

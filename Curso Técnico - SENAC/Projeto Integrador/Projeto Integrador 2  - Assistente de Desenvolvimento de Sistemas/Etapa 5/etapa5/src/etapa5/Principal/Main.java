@@ -1,6 +1,6 @@
 package etapa5.Principal;
 
-import etapa5.telas.Menu;
+import etapa5.Views.Login;
 
 /**
  * @author Claudemir Souza
@@ -8,8 +8,8 @@ import etapa5.telas.Menu;
 public class Main {
 
     public static void main(String[] args) {
-        Menu menu = new Menu();
-        menu.setVisible(true);
+        Login login = new Login();
+        login.setVisible(true);
     }
 
 }

@@ -82,7 +82,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-// Criamos um objeto do tipo Usuario
+        // Criamos um objeto do tipo Usuario
         Usuario usuario = new Usuario();
 
         // Atribuimos os valores Login e Senha baseado nos dados dos componentes JTextField
