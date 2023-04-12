@@ -6,12 +6,13 @@ package com.claudemir.cem_exercicios.repeticao_para;
 public class Exercicio70 {
 
     public static void main(String[] args) {
-        int n = 1, nAnt = 0;
-        for (int i = 0; i <= 21; i++) {
-            System.out.print(n + " -> ");
-            n = n + i;
-            i = n;
+        int n1 = 0, n2 = 1;
+        for (int i = 0; i < 10; i++) {
+            System.out.print(n1 + " -> ");
+            int n3 = n1 + n2;
+            n1 = n2;
+            n2 = n3;
         }
-        System.out.print("Acabou!");
+        System.out.println("Acabou!");
     }
 }
