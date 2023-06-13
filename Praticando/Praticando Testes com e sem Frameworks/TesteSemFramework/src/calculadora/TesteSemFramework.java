@@ -1,4 +1,4 @@
-package testesemframework;
+package calculadora;
 
 /**
  * @author Claudemir
