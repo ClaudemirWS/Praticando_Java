@@ -195,39 +195,41 @@ public class GuiJTableBuscaPaciente extends javax.swing.JInternalFrame {
                 PacienteServicos ps = ServicosFactory.getPacienteServicos();
 
                 /* Buscando o valor da JComboBox. O método getSelectedItem
-         devolve um Object selecionado na JCombo */
+                devolve um Object selecionado na JCombo */
                 String pesquisa = (String) jcomboFiltro.getSelectedItem();
 
                 //Criando variável que armazenará a consulta.
-                String query;
+                String query = "";
 
                 /* Testando o que o usuário escolheu no JComboBox. Conforme
                  o que foi escolhido uma determinada consulta será montada. */
                 if (pesquisa.equals("Código Paciente")) {
                     query = "where ID_PACIENTE = " + jtFiltro.getText() + "";
                 } else if (pesquisa.equals("CPF")) {
-                    query = "where CPF = '" + jtFiltro.getText() + "'";
-                } else {
+                    query = "where CPF like '%" + jtFiltro.getText() + "%'";
+                } else if (pesquisa.equals("Nome Paciente")) {
                     query = "where NOME like '%" + jtFiltro.getText() + "%'";
+                } else {
+
                 }
 
                 ArrayList<Paciente> p = new ArrayList<>();
 
                 /* Buscando um ArrayList conforme o filtro que o usuário
-         solicitou. */
+                solicitou. */
                 p = ps.buscarPacienteFiltro(query);
 
                 //Limpando a tabela
                 limparTabela();
 
                 /* For que preenche o modelo de tabela (dtm) buscando 
-         dados do ArrayList chamado p. */
+                dados do ArrayList chamado p. */
                 for (int i = 0; i < p.size(); i++) {
                     dtm.addRow(new String[]{
                         String.valueOf(p.get(i).getIdPaciente()),
                         p.get(i).getNome(),
                         p.get(i).getCpf(),
-                         p.get(i).getTelefone(),});
+                        p.get(i).getTelefone(),});
 
                 }//fecha for
 
@@ -248,7 +250,11 @@ public class GuiJTableBuscaPaciente extends javax.swing.JInternalFrame {
 
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
-        limparTabela();
+        int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza?");
+        if (confirma == 0) {
+            limparTabela();
+            preencherTabela();
+        }
     }//GEN-LAST:event_jbLimparActionPerformed
 
     private void jtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtFiltroKeyReleased

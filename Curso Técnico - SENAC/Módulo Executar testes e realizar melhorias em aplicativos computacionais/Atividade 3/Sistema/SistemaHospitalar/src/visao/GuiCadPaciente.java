@@ -162,7 +162,7 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cadastrar() {
+    private int cadastrar() {
         try {
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -194,8 +194,7 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
                 pac.setConvenio(convenio.getIdConvenio());
 
             } else {
-                JOptionPane.showMessageDialog(this,
-                        "Selecione um produto");
+                
             } // fecha else
 
             // Criando objeto PacienteDAO para cadastrar o paciente no banco de dados
@@ -204,10 +203,12 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
 
             // Mensagem de sucesso
             JOptionPane.showMessageDialog(this, "Paciente cadastrado com sucesso!");
+            return 1;
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "ERRO! " + e.getMessage());
+            // Mensagem de erro
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos corretamente e selecione um convênio.");
+            return 0;
         } // fecha catch
 
     }// fecha método
@@ -250,8 +251,7 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
             } // fecha for
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "Erro! " + e.getMessage());
+
         } // fecha catch
     }// fecha classe
 
@@ -260,8 +260,9 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
     }
 
     private void jbCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {
-        cadastrar();
-        limpar();
+        if (cadastrar() == 1) {
+            limpar();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
