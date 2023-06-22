@@ -50,7 +50,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jmCadastro.setText("Cadastro");
-        jmCadastro.setActionCommand("Cadastro");
 
         jmiCadProduto.setText("Paciente");
         jmiCadProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +103,7 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void abrirCadPaciente() {
+    protected void abrirCadPaciente() {
         GuiCadPaciente gcp = new GuiCadPaciente();
         jAreaTrabalho.add(gcp);
         gcp.setVisible(true);
@@ -163,7 +162,7 @@ public class Menu extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jAreaTrabalho;
+    protected javax.swing.JDesktopPane jAreaTrabalho;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jmCadastro;
     private javax.swing.JMenu jmConsulta;

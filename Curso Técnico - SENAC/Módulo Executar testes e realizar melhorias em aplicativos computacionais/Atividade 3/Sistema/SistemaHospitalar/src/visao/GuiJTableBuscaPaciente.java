@@ -63,7 +63,7 @@ public class GuiJTableBuscaPaciente extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtablePaciente);
 
         jLayeredPane1.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 20, 452, 180);
+        jScrollPane1.setBounds(30, 20, 453, 180);
 
         jLayeredPane2.setBackground(new java.awt.Color(255, 255, 255));
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -151,7 +151,7 @@ public class GuiJTableBuscaPaciente extends javax.swing.JInternalFrame {
     }//fecha método
 
     /* Método responsável por popular novos dados na tabela. */
-    private void preencherTabela() {
+    protected void preencherTabela() {
         try {
             //Buscando objeto PacienteServicos     
             PacienteServicos ps = ServicosFactory.getPacienteServicos();
@@ -188,7 +188,10 @@ public class GuiJTableBuscaPaciente extends javax.swing.JInternalFrame {
 
     }//fecha método
 
-    private void buscarFiltro() {
+    protected boolean buscarFiltro() {
+
+        boolean filtro = false;
+
         try {
             /* Se o text field não estiver vazio ele busca! */
             if (!jtFiltro.getText().isEmpty()) {
@@ -204,10 +207,13 @@ public class GuiJTableBuscaPaciente extends javax.swing.JInternalFrame {
                 /* Testando o que o usuário escolheu no JComboBox. Conforme
                  o que foi escolhido uma determinada consulta será montada. */
                 if (pesquisa.equals("Código Paciente")) {
+                    filtro = true;
                     query = "where ID_PACIENTE = " + jtFiltro.getText() + "";
                 } else if (pesquisa.equals("CPF")) {
+                    filtro = true;
                     query = "where CPF like '%" + jtFiltro.getText() + "%'";
                 } else if (pesquisa.equals("Nome Paciente")) {
+                    filtro = true;
                     query = "where NOME like '%" + jtFiltro.getText() + "%'";
                 } else {
 
@@ -246,6 +252,7 @@ public class GuiJTableBuscaPaciente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this,
                     "Erro ao buscar! " + e.getMessage());
         }//fecha catch
+        return filtro;
     }//fecha método
 
 
@@ -274,12 +281,12 @@ public class GuiJTableBuscaPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbLimpar;
+    protected javax.swing.JButton jbLimpar;
     private javax.swing.JButton jbPreencherTabela;
-    private javax.swing.JComboBox jcomboFiltro;
+    protected javax.swing.JComboBox jcomboFiltro;
     private javax.swing.JLabel jlFiltro;
     private javax.swing.JLabel jlPesquisarpor;
-    private javax.swing.JTextField jtFiltro;
-    private javax.swing.JTable jtablePaciente;
+    protected javax.swing.JTextField jtFiltro;
+    protected javax.swing.JTable jtablePaciente;
     // End of variables declaration//GEN-END:variables
 }

@@ -162,7 +162,7 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private int cadastrar() {
+    protected int cadastrar() {
         try {
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -194,7 +194,7 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
                 pac.setConvenio(convenio.getIdConvenio());
 
             } else {
-                
+
             } // fecha else
 
             // Criando objeto PacienteDAO para cadastrar o paciente no banco de dados
@@ -226,7 +226,7 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
     }// fecha método
 
     // metodo para preencher o combo box com os produtos cadastrados no banco de dados
-    private void preencherCombo() {
+    protected int preencherCombo() {
         try {
 
             // Buscando objeto ProdutoServicos
@@ -248,10 +248,12 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
                 // Adicionando o nome do convênio ao JComboBox
                 jcConvenio.addItem(p.get(i).getNomeConvenio());
 
-            } // fecha for
+            }
+
+            return 1;// fecha for
 
         } catch (Exception e) {
-
+            return 0;
         } // fecha catch
     }// fecha classe
 
@@ -259,7 +261,7 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
         limpar();
     }
 
-    private void jbCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {
+    protected void jbCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {
         if (cadastrar() == 1) {
             limpar();
         }
@@ -270,7 +272,7 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JButton jbCadastrar1;
     private javax.swing.JButton jbLimpar;
-    private javax.swing.JComboBox<String> jcConvenio;
+    protected javax.swing.JComboBox<String> jcConvenio;
     private javax.swing.JLabel jlCpf;
     private javax.swing.JLabel jlDataNasc;
     private javax.swing.JLabel jlEmail1;
@@ -279,12 +281,12 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jlNome;
     private javax.swing.JLabel jlRG;
     private javax.swing.JLabel jlTelefone;
-    private javax.swing.JTextField jtCpf;
-    private javax.swing.JTextField jtDataNasc;
-    private javax.swing.JTextField jtEmail1;
-    private javax.swing.JTextField jtEndereco;
-    private javax.swing.JTextField jtNome;
-    private javax.swing.JTextField jtRG;
-    private javax.swing.JTextField jtTelefone;
+    protected javax.swing.JTextField jtCpf;
+    protected javax.swing.JTextField jtDataNasc;
+    protected javax.swing.JTextField jtEmail1;
+    protected javax.swing.JTextField jtEndereco;
+    protected javax.swing.JTextField jtNome;
+    protected javax.swing.JTextField jtRG;
+    protected javax.swing.JTextField jtTelefone;
     // End of variables declaration//GEN-END:variables
 }
